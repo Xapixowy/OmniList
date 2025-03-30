@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+
+  --color-my-primary-50: var(--color-indigo-50);
+  --color-my-primary-100: var(--color-indigo-100);
+  --color-my-primary-200: var(--color-indigo-200);
+  --color-my-primary-300: var(--color-indigo-300);
+  --color-my-primary-400: var(--color-indigo-400);
+  --color-my-primary-500: var(--color-indigo-500);
+  --color-my-primary-600: var(--color-indigo-600);
+  --color-my-primary-700: var(--color-indigo-700);
+  --color-my-primary-800: var(--color-indigo-800);
+  --color-my-primary-900: var(--color-indigo-900);
+
+  --color-my-secondary-50: var(--color-blue-50);
+  --color-my-secondary-100: var(--color-blue-100);
+  --color-my-secondary-200: var(--color-blue-200);
+  --color-my-secondary-300: var(--color-blue-300);
+  --color-my-secondary-400: var(--color-blue-400);
+  --color-my-secondary-500: var(--color-blue-500);
+  --color-my-secondary-600: var(--color-blue-600);
+  --color-my-secondary-700: var(--color-blue-700);
+  --color-my-secondary-800: var(--color-blue-800);
+  --color-my-secondary-900: var(--color-blue-900);
+
+  --color-my-accent-50: var(--color-fuchsia-50);
+  --color-my-accent-100: var(--color-fuchsia-100);
+  --color-my-accent-200: var(--color-fuchsia-200);
+  --color-my-accent-300: var(--color-fuchsia-300);
+  --color-my-accent-400: var(--color-fuchsia-400);
+  --color-my-accent-500: var(--color-fuchsia-500);
+  --color-my-accent-600: var(--color-fuchsia-600);
+  --color-my-accent-700: var(--color-fuchsia-700);
+  --color-my-accent-800: var(--color-fuchsia-800);
+  --color-my-accent-900: var(--color-fuchsia-900);
+}
+
+@layer base {
+  @import './reset.css';
+
+  :root {
+    --max-width: 1280px;
+  }
+
+  html {
+    @apply bg-zinc-950 font-sans text-zinc-50;
+  }
+
+  body {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  @import './global.css';
+}
