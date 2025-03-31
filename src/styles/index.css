@@ -49,7 +49,7 @@
   }
 
   body {
-    @apply min-h-screen;
+    @apply min-h-screen overflow-x-hidden;
   }
 }
 
