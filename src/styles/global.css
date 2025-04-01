@@ -75,7 +75,7 @@ a {
   }
 
   span[class$='__title'] {
-    @apply inline-flex items-center gap-1;
+    @apply inline-flex items-center gap-1 whitespace-nowrap;
   }
 }
 

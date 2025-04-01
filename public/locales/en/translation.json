@@ -1,9 +1,31 @@
 {
-  "HomePage": {
+  "HomeLayout": {
+    "About": "About",
+    "Dependecies": "Dependecies",
+    "Authentication": "Authentication",
+    "Login": "Login",
+    "Sign Up": "Sign Up",
+    "All rights reserved.": "All rights reserved."
+  },
+  "LandingPage": {
     "Track Your Entertainment Journey": "Track Your Entertainment Journey",
     "Keep track of your movies, TV shows, anime, books, and games all in one place.": "Keep track of your movies, TV shows, anime, books, and games all in one place.",
     "Never lose track of what you've watched, read, or played again.": "Never lose track of what you've watched, read, or played again.",
     "Get Started": "Get Started",
-    "Abstract background with color blur": "Abstract background with color blur"
+    "Abstract background with color blur": "Abstract background with color blur",
+    "Whats the point?": "What's the point?",
+    "helps you organize and track all your entertainment across different mediums.": "helps you organize and track all your entertainment across different mediums.",
+    "Satisfied Users": "Satisfied Users",
+    "Join thousands of users who organize their entertainment with": "Join thousands of users who organize their entertainment with",
+    "Ready to organize your entertainment?": "Ready to organize your entertainment?",
+    "Join OmniList today and never lose track of your movies, shows, books, and games again.": "Join OmniList today and never lose track of your movies, shows, books, and games again.",
+    "Sign Up Now": "Sign Up Now",
+    "Log In": "Log In"
+  },
+  "DiscordStatus": {
+    "Online": "Online",
+    "Idle": "Idle",
+    "Do Not Disturb": "Do Not Disturb",
+    "Offline": "Offline"
   }
 }

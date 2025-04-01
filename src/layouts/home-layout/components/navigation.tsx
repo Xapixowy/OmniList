@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import { NavLink, NavLinkRenderProps } from 'react-router';
-import { homeLayoutConfig } from '../configs/homeLayout.config';
-import { NavigationItem as NavigationItemType } from '../types/navigationItem.type';
+import { homeLayoutConfig } from '../configs/home-layout';
+import { NavigationItem as NavigationItemType } from '../types/navigation-item';
 
 const NavigationItem = ({ title, link, activeClassName, inactiveClassName }: NavigationItemType) => {
-  console.log(activeClassName);
+  const { t } = useTranslation();
 
   const generateClassName = ({ isActive }: NavLinkRenderProps) => {
     const defaultClasses = 'link';
@@ -14,9 +15,9 @@ const NavigationItem = ({ title, link, activeClassName, inactiveClassName }: Nav
   };
 
   return (
-    <li className='home-layout__navigation-item'>
+    <li>
       <NavLink end to={link} className={generateClassName}>
-        <span className='home-layout__navigation-item__title'>{title}</span>
+        <span>{t(title)}</span>
       </NavLink>
     </li>
   );
@@ -24,7 +25,7 @@ const NavigationItem = ({ title, link, activeClassName, inactiveClassName }: Nav
 
 const NavigationSection = ({ items }: { items: NavigationItemType[] }) => {
   return (
-    <ul className='home-layout__navigation-section flex items-center gap-4'>
+    <ul className='flex items-center gap-4'>
       {items.map((item, index) => (
         <NavigationItem key={index} {...item} />
       ))}
@@ -34,7 +35,7 @@ const NavigationSection = ({ items }: { items: NavigationItemType[] }) => {
 
 const Navigation = () => {
   return (
-    <nav className='home-layout__navigation ml-8 flex flex-1 items-center justify-between gap-8'>
+    <nav className='ml-8 flex flex-1 items-center justify-between gap-8'>
       {homeLayoutConfig.navigationSections.map((section, index) => (
         <NavigationSection key={index} items={section} />
       ))}

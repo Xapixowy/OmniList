@@ -13,7 +13,7 @@ const Review = (props: ReviewType) => {
     <div
       className={`flex flex-col gap-4 rounded-xl border border-zinc-400/10 p-6 transition-transform hover:translate-x-1 hover:-translate-y-1 ${props.className ?? ''}`}
     >
-      <p>{props.message}</p>
+      <p>&#8220;{props.message}&#8221;</p>
       <div className='flex items-center gap-4'>
         <Avvvatars value={props.name} size={48} style='shape' />
         <div className='flex flex-col gap-1'>

@@ -2,8 +2,12 @@ export const appRoutesConfig = {
   default: '/',
   wildcard: '*',
 
-  about: 'about',
   uiTester: 'ui-tester',
+
+  about: 'about',
+  aboutRoutes: {
+    dependencies: 'dependencies',
+  },
 
   auth: 'auth',
   authRoutes: {
