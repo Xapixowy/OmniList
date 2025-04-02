@@ -2,20 +2,26 @@ import { SocialMediaLinkProps } from '@/components/ui/social-media-link';
 import { appRoutesConfig } from '@/configs/app-routes';
 import { TbBrandGithub, TbBrandLinkedinFilled } from 'react-icons/tb';
 import { FooterNavigationSectionProps } from '../components/footer';
-import { NavigationItem } from '../types/navigation-item';
+import { NavigationItem, NavigationSection } from '../components/navigation';
 
 export const homeLayoutConfig: {
-  navigationSections: NavigationItem[][];
+  navigationLists: (NavigationItem | NavigationSection)[][];
   footerNavigationSections: FooterNavigationSectionProps[];
   socialLinks: SocialMediaLinkProps[];
   discordUserId: string;
 } = {
-  navigationSections: [
+  navigationLists: [
     [],
     [
       {
+        id: appRoutesConfig.about,
         title: 'HomeLayout.About',
-        link: `${appRoutesConfig.about}`,
+        items: [
+          {
+            title: 'HomeLayout.Dependecies',
+            link: `${appRoutesConfig.about}`,
+          },
+        ],
       },
       {
         title: 'HomeLayout.Login',
