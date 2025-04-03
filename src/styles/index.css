@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './utility.css';
 
 @theme {
   --font-sans: 'Inter', sans-serif;
@@ -42,6 +43,8 @@
 
   :root {
     --max-width: 1280px;
+
+    --header-height: 5rem;
   }
 
   html {
@@ -55,4 +58,8 @@
 
 @layer components {
   @import './global.css';
+}
+
+@layer utilities {
+  @import './utilities.css';
 }

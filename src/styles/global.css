@@ -47,7 +47,7 @@ p {
 
 .link,
 a {
-  @apply text-zinc-400 transition-colors hover:text-zinc-200;
+  @apply cursor-pointer text-zinc-400 transition-colors hover:text-zinc-200;
 
   &:hover,
   &.active {

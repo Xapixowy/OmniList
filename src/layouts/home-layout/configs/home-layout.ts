@@ -2,7 +2,8 @@ import { SocialMediaLinkProps } from '@/components/ui/social-media-link';
 import { appRoutesConfig } from '@/configs/app-routes';
 import { TbBrandGithub, TbBrandLinkedinFilled } from 'react-icons/tb';
 import { FooterNavigationSectionProps } from '../components/footer';
-import { NavigationItem, NavigationSection } from '../components/navigation';
+import { type NavigationItem } from '../types/navigation-item';
+import { type NavigationSection } from '../types/navigation-section';
 
 export const homeLayoutConfig: {
   navigationLists: (NavigationItem | NavigationSection)[][];
@@ -19,19 +20,19 @@ export const homeLayoutConfig: {
         items: [
           {
             title: 'HomeLayout.Dependecies',
-            link: `${appRoutesConfig.about}`,
+            link: `${appRoutesConfig.about}/${appRoutesConfig.aboutRoutes.dependencies}`,
           },
         ],
       },
       {
         title: 'HomeLayout.Login',
         link: `${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.login}`,
-        inactiveClassName: 'link link--secondary',
+        variant: 'secondary',
       },
       {
         title: 'HomeLayout.Sign Up',
         link: `${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.register}`,
-        inactiveClassName: '-ml-2 button button--secondary',
+        variant: 'primary',
       },
     ],
   ],

@@ -67,9 +67,9 @@ const Footer = () => {
             <span>{t('HomeLayout.All rights reserved.')}</span>
           </p>
           <div>
-            <DiscordPresenceLink userId={homeLayoutConfig.discordUserId} />
+            <DiscordPresenceLink userId={homeLayoutConfig.discordUserId} variant='small' />
             {homeLayoutConfig.socialLinks.map((link) => (
-              <SocialMediaLink key={link.link} {...link} />
+              <SocialMediaLink key={link.name} {...link} variant='small' />
             ))}
           </div>
         </section>

@@ -5,46 +5,41 @@ import { useTranslation } from 'react-i18next';
 import { TbChevronDown } from 'react-icons/tb';
 import { NavLink, NavLinkRenderProps } from 'react-router';
 import { homeLayoutConfig } from '../configs/home-layout';
+import { translateNavigationList } from '../functions/translate-navigation-list';
+import { isNavigationItem, type NavigationItem, type NavigationItemVariant } from '../types/navigation-item';
+import { type NavigationSection } from '../types/navigation-section';
 
 const NAVIGATION_COLLAPSE_ITEM_DATA_ATTRIBUTE = 'navigation-collapse-item';
 
-export type NavigationItem = {
-  title: string;
-  link: string;
-  activeClassName?: string;
-  inactiveClassName?: string;
-};
-
-export type NavigationSection = {
-  id: string;
-  title: string;
-  items: NavigationItem[];
-};
-
-const isNavigationItem = (item: unknown): item is NavigationItem => {
-  if (item === null || item === undefined || typeof item !== 'object') {
-    return false;
-  }
-
-  const maybeItem = item as Record<string, unknown>;
-
-  const isTitleString = typeof maybeItem.title === 'string';
-  const isLinkString = typeof maybeItem.link === 'string';
-  const isActiveClassNameStringOrUndefined =
-    typeof maybeItem.activeClassName === 'string' || typeof maybeItem.activeClassName === 'undefined';
-  const isInactiveClassNameStringOrUndefined =
-    typeof maybeItem.inactiveClassName === 'string' || typeof maybeItem.inactiveClassName === 'undefined';
-
-  return isTitleString && isLinkString && isActiveClassNameStringOrUndefined && isInactiveClassNameStringOrUndefined;
-};
-
-const NavigationItem = ({ title, link, activeClassName, inactiveClassName }: NavigationItem) => {
+const NavigationItem = ({ title, link, variant }: NavigationItem) => {
   const { setNavigationCollapsedItem } = useNavigationCollapsedItemContext();
 
+  const variantClasses: Record<
+    NavigationItemVariant,
+    {
+      default: string;
+      active?: string;
+      inactive?: string;
+    }
+  > = {
+    default: {
+      default: 'link',
+      active: 'active',
+    },
+    primary: {
+      default: 'button button--secondary',
+    },
+    secondary: {
+      default: 'link link--secondary',
+    },
+  };
+
   const generateClassName = ({ isActive }: NavLinkRenderProps) => {
-    const defaultClasses = 'link';
-    const inactiveClasses = inactiveClassName ?? '';
-    const activeClasses = activeClassName ?? 'active';
+    const variantObj = variantClasses[variant ?? 'default'];
+
+    const defaultClasses = variantObj.default;
+    const inactiveClasses = variantObj.inactive ?? '';
+    const activeClasses = variantObj.active ?? '';
 
     return `${defaultClasses} ${isActive ? activeClasses : inactiveClasses}`;
   };
@@ -72,7 +67,7 @@ const NavigationSection = ({ id, title, items }: NavigationSection) => {
 
   return (
     <div className='relative' {...dynamicAttributes}>
-      <span className='link flex cursor-pointer items-center gap-1' onClick={collapseItemHandler}>
+      <span className='link flex items-center gap-1' onClick={collapseItemHandler}>
         {title} <TbChevronDown className={`${isThisItemCollapsed ? 'rotate-180' : ''} transition-transform`} />
       </span>
       <div
@@ -87,22 +82,9 @@ const NavigationSection = ({ id, title, items }: NavigationSection) => {
 };
 
 const NavigationList = ({ items }: { items: (NavigationItem | NavigationSection)[] }) => {
-  const { t } = useTranslation();
-
-  const translateItem = (item: NavigationItem) => ({
-    ...item,
-    title: t(item.title),
-  });
-
-  const translatedItems = items.map((item) =>
-    isNavigationItem(item)
-      ? translateItem(item)
-      : { ...item, title: t(item.title), items: item.items.map(translateItem) },
-  );
-
   return (
     <ul className='flex items-center gap-4'>
-      {translatedItems.map((item, index) => (
+      {items.map((item, index) => (
         <li key={index}>{isNavigationItem(item) ? <NavigationItem {...item} /> : <NavigationSection {...item} />}</li>
       ))}
     </ul>
@@ -110,7 +92,10 @@ const NavigationList = ({ items }: { items: (NavigationItem | NavigationSection)
 };
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const { setNavigationCollapsedItem } = useNavigationCollapsedItemContext();
+
+  const translatedLists = homeLayoutConfig.navigationLists.map((list) => translateNavigationList(list, t));
 
   const mouseOverHandler = (e: MouseEvent): void => {
     if (!e.target) {
@@ -138,8 +123,8 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className='ml-8 flex flex-1 items-center justify-between gap-8'>
-      {homeLayoutConfig.navigationLists.map((section, index) => (
+    <nav className='ml-8 hidden flex-1 items-center justify-between gap-8 sm:flex'>
+      {translatedLists.map((section, index) => (
         <NavigationList key={index} items={section} />
       ))}
     </nav>
