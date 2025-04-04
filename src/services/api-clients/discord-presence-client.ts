@@ -6,6 +6,8 @@ export class DiscordPresenceClient {
   static #instance: DiscordPresenceClient | undefined;
 
   private readonly apiUrl: string = 'https://api.lanyard.rest/v1';
+  private readonly webSocketUrl: string = 'wss://api.lanyard.rest/socket/';
+  private readonly webSocketTimeout: number = 60 * 1024;
 
   private constructor() {}
 
@@ -36,9 +38,20 @@ export class DiscordPresenceClient {
   }
 
   userPresenceWebSocket(userId: string, callback: (data: DiscordPresenceData | null) => void): () => void {
-    const ws = new WebSocket(`wss://api.lanyard.rest/socket/`);
+    const ws = new WebSocket(this.webSocketUrl);
+
+    let isConnected = false;
+
+    const connectionTimeout = setTimeout(() => {
+      if (!isConnected) {
+        ws.close();
+        callback(null);
+      }
+    }, this.webSocketTimeout);
 
     ws.onopen = () => {
+      isConnected = true;
+      clearTimeout(connectionTimeout);
       ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: userId } }));
     };
 
@@ -51,10 +64,13 @@ export class DiscordPresenceClient {
     };
 
     ws.onerror = () => {
+      clearTimeout(connectionTimeout);
       callback(null);
     };
 
     return () => {
+      clearTimeout(connectionTimeout);
+
       if (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING) {
         ws.close();
       }

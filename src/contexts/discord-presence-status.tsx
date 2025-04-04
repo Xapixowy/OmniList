@@ -45,6 +45,8 @@ export const DiscordPresenceProvider = ({
       setStatus(data.data.discord_status);
     };
 
+    fetchStatus();
+
     const wsDisconnect = discordPresenceClient.userPresenceWebSocket(userId, (data) => {
       if (!data) {
         fetchStatus();
