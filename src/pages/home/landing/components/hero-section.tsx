@@ -1,4 +1,4 @@
-import heroBackgroundImage from '@/assets/landing-page/hero-background.webp';
+import heroBackgroundImage600 from '@/assets/landing-page/hero-background-600.webp';
 import Button from '@/components/ui/button';
 import { appRoutesConfig } from '@/configs/app-routes';
 import { useTranslation } from 'react-i18next';
@@ -19,9 +19,10 @@ const HeroSection = () => {
         <Button variant='primary'>{t('LandingPage.Get Started')}</Button>
       </Link>
       <LazyLoadImage
+        visibleByDefault={true}
         className='absolute top-1/2 left-1/2 -z-1 h-[2240px] w-[2400px] max-w-none -translate-1/2'
         alt={t('LandingPage.Abstract background with color blur')}
-        src={heroBackgroundImage} // use normal <img> attributes as props
+        src={heroBackgroundImage600}
       />
     </section>
   );
