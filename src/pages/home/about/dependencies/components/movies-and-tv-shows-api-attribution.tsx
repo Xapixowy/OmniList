@@ -1,6 +1,6 @@
 import Callout from '@/components/ui/callout';
-import { HyperlinkProps } from '@/components/ui/Hyperlink';
 import HyperlinkList from '@/components/ui/hyperlink-list';
+import { type HyperlinkProps } from '@/components/ui/hyperlinks';
 import { useTranslation } from 'react-i18next';
 import ApiAttribution from './api-attribution';
 

@@ -1,4 +1,4 @@
-import Hyperlink, { HyperlinkProps, HyperlinkVariant } from './Hyperlink';
+import Hyperlink, { type HyperlinkProps, type HyperlinkVariant } from './hyperlink';
 
 type HyperlinkListProps = {
   links: HyperlinkProps[];
