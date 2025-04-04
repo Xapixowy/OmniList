@@ -1,5 +1,6 @@
 import { useNavigationCollapsedItemContext } from '@/contexts/navigation-collapsed-item';
 import { findParrentElementWithDataAttribute } from '@/functions/find-parent-element-with-data-attribute';
+import { tw } from '@/functions/tw';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TbChevronDown } from 'react-icons/tb';
@@ -23,14 +24,16 @@ const NavigationItem = ({ title, link, variant }: NavigationItem) => {
     }
   > = {
     default: {
-      default: 'link',
-      active: 'active',
+      default: tw('link'),
+      active: tw('active'),
     },
     primary: {
-      default: 'button button--secondary',
+      default: tw('button button--secondary'),
     },
     secondary: {
-      default: 'link link--secondary',
+      default: tw(
+        'rounded-full px-5 py-2 text-zinc-200 outline outline-transparent hover:bg-zinc-700/30 hover:outline-zinc-700/30',
+      ),
     },
   };
 
@@ -41,7 +44,7 @@ const NavigationItem = ({ title, link, variant }: NavigationItem) => {
     const inactiveClasses = variantObj.inactive ?? '';
     const activeClasses = variantObj.active ?? '';
 
-    return `${defaultClasses} ${isActive ? activeClasses : inactiveClasses}`;
+    return `no-underline ${defaultClasses} ${isActive ? activeClasses : inactiveClasses}`;
   };
 
   return (
@@ -67,11 +70,11 @@ const NavigationSection = ({ id, title, items }: NavigationSection) => {
 
   return (
     <div className='relative' {...dynamicAttributes}>
-      <span className='link flex items-center gap-1' onClick={collapseItemHandler}>
+      <span className='link flex items-center gap-1 no-underline' onClick={collapseItemHandler}>
         {title} <TbChevronDown className={`${isThisItemCollapsed ? 'rotate-180' : ''} transition-transform`} />
       </span>
       <div
-        className={`absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-[calc(120%)] items-center justify-center rounded-sm bg-zinc-950/30 px-4 py-2 whitespace-nowrap ${isThisItemCollapsed ? 'block' : 'hidden'}`}
+        className={`absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-[calc(120%)] items-center justify-center rounded-sm bg-zinc-950/80 px-4 py-2 whitespace-nowrap ${isThisItemCollapsed ? 'block' : 'hidden'}`}
       >
         {items.map((item) => (
           <NavigationItem key={item.title} {...item} />

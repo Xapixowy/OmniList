@@ -22,6 +22,27 @@
     "Sign Up Now": "Sign Up Now",
     "Log In": "Log In"
   },
+  "DependenciesPage": {
+    "Dependencies & Attributions": "Dependencies & Attributions",
+    "OmniList uses several external APIs to provide data for different media types. We're grateful to these services for making their data available": "OmniList uses several external APIs to provide data for different media types. We're grateful to these services for making their data available",
+    "Movies & TV Shows": "Movies & TV Shows",
+    "TMDB Logo": "TMDB Logo",
+    "This product uses the TMDB API but is not endorsed or certified by TMDB.": "This product uses the TMDB API but is not endorsed or certified by TMDB.",
+    "The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB's international focus and breadth of data is largely unmatched.": "The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB's international focus and breadth of data is largely unmatched.",
+    "Visit TMDB": "Visit TMDB",
+    "API Documentation": "API Documentation",
+    "To Be Implemented": "To Be Implemented",
+    "API integration pending": "API integration pending",
+    "Anime & Manga": "Anime & Manga",
+    "We're currently evaluating different anime and manga data providers to integrate with OmniList. Once implemented, proper attribution will be provided here.": "We're currently evaluating different anime and manga data providers to integrate with OmniList. Once implemented, proper attribution will be provided here.",
+    "Potential APIs under consideration include MyAnimeList, AniList, and Kitsu.": "Potential APIs under consideration include MyAnimeList, AniList, and Kitsu.",
+    "Books": "Books",
+    "We're currently evaluating different book data providers to integrate with OmniList. Once implemented, proper attribution will be provided here.": "We're currently evaluating different book data providers to integrate with OmniList. Once implemented, proper attribution will be provided here.",
+    "Potential APIs under consideration include Google Books API, Open Library, and Goodreads.": "Potential APIs under consideration include Google Books API, Open Library, and Goodreads.",
+    "Games": "Games",
+    "We're currently evaluating different game data providers to integrate with OmniList. Once implemented, proper attribution will be provided here.": "We're currently evaluating different game data providers to integrate with OmniList. Once implemented, proper attribution will be provided here.",
+    "Potential APIs under consideration include IGDB, Giant Bomb, and RAWG.": "Potential APIs under consideration include IGDB, Giant Bomb, and RAWG."
+  },
   "DiscordStatus": {
     "Online": "Online",
     "Idle": "Idle",

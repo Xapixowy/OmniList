@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router';
 
-const Hero = () => {
+const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
@@ -26,4 +26,4 @@ const Hero = () => {
     </section>
   );
 };
-export default Hero;
+export default HeroSection;

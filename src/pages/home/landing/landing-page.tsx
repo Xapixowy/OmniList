@@ -1,16 +1,16 @@
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
-import Advantages from './components/advantages';
-import CallToAction from './components/call-to-action';
-import Hero from './components/hero';
-import Reviews from './components/reviews';
+import AdvantagesSection from './components/advantages-section';
+import CallToActionSection from './components/call-to-action-section';
+import HeroSection from './components/hero-section';
+import ReviewsSection from './components/reviews-section';
 
 const LandingPage = () => {
   return (
     <MaxWidthWrapper className='flex flex-col gap-12'>
-      <Hero />
-      <Advantages />
-      <Reviews />
-      <CallToAction />
+      <HeroSection />
+      <AdvantagesSection />
+      <ReviewsSection />
+      <CallToActionSection />
     </MaxWidthWrapper>
   );
 };

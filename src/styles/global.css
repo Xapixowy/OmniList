@@ -47,19 +47,35 @@ p {
 
 .link,
 a {
-  @apply cursor-pointer text-zinc-400 transition-colors hover:text-zinc-200;
+  @apply cursor-pointer text-zinc-400 transition-colors;
 
   &:hover,
   &.active {
-    @apply text-zinc-50;
+    @apply text-zinc-50 underline;
   }
-}
 
-.link--secondary {
-  @apply rounded-full px-5 py-2 text-zinc-200 outline outline-transparent;
+  &.link--primary {
+    @apply text-my-primary-400;
 
-  &:hover {
-    @apply bg-zinc-700/30 outline-zinc-700/30;
+    &:hover {
+      @apply text-my-primary-200;
+    }
+  }
+
+  &.link--secondary {
+    @apply text-my-secondary-400;
+
+    &:hover {
+      @apply text-my-secondary-200;
+    }
+  }
+
+  &.link--accent {
+    @apply text-my-accent-400;
+
+    &:hover {
+      @apply text-my-accent-200;
+    }
   }
 }
 
