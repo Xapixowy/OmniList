@@ -42,6 +42,20 @@ const HamburgerMenu = () => {
   );
 };
 
+const Logo = () => {
+  const { setMobileNavigationDrawerVisibility } = useMobileNavigationDrawerVisibilityContext();
+
+  return (
+    <Link
+      to={appRoutesConfig.default}
+      className='text-2xl font-extrabold text-zinc-50 no-underline'
+      onClick={() => setMobileNavigationDrawerVisibility(false)}
+    >
+      OmniList
+    </Link>
+  );
+};
+
 const Header = () => {
   const [isOnTop, setIsOnTop] = useState<boolean>(true);
 
@@ -59,9 +73,7 @@ const Header = () => {
     <Providers>
       <header className={`sticky top-0 h-20 ${!isOnTop ? 'bg-zinc-950/80' : 'bg-transparent'} z-999`}>
         <MaxWidthWrapper className='bg vb flex h-[var(--header-height)] items-center px-8'>
-          <Link to={appRoutesConfig.default} className='text-2xl font-extrabold text-zinc-50 no-underline'>
-            OmniList
-          </Link>
+          <Logo />
           <Navigation />
           <HamburgerMenu />
         </MaxWidthWrapper>
