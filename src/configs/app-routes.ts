@@ -17,4 +17,4 @@ export const appRoutesConfig = {
     forgotPassword: 'forgot-password',
     resetPassword: 'reset-password',
   },
-};
+} as const;

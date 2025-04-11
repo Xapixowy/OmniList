@@ -1,5 +1,5 @@
+import BrandLink from '@/components/global/brand-link';
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
-import { appRoutesConfig } from '@/configs/app-routes';
 import {
   MobileNavigationDrawerVisibilityProvider,
   useMobileNavigationDrawerVisibilityContext,
@@ -7,7 +7,6 @@ import {
 import { NavigationCollapsedItemProvider } from '@/contexts/navigation-collapsed-item';
 import { ReactNode, useEffect, useState } from 'react';
 import { TbMenu2, TbX } from 'react-icons/tb';
-import { Link } from 'react-router';
 import MobileNavigationDrawer from './mobile-navigation-drawer';
 import Navigation from './navigation';
 
@@ -45,15 +44,7 @@ const HamburgerMenu = () => {
 const Logo = () => {
   const { setMobileNavigationDrawerVisibility } = useMobileNavigationDrawerVisibilityContext();
 
-  return (
-    <Link
-      to={appRoutesConfig.default}
-      className='text-2xl font-extrabold text-zinc-50 no-underline'
-      onClick={() => setMobileNavigationDrawerVisibility(false)}
-    >
-      OmniList
-    </Link>
-  );
+  return <BrandLink onClick={() => setMobileNavigationDrawerVisibility(false)} />;
 };
 
 const Header = () => {

@@ -5,7 +5,7 @@ type Props = {
 
 const MaxWidthWrapper = (props: Props) => {
   return (
-    <div className={`h-full max-w-[var(--max-width)] ml-auto mr-auto max-width-wrapper ${props.className}`}>
+    <div className={`max-width-wrapper mr-auto ml-auto max-w-[var(--max-width)] ${props.className}`}>
       {props.children}
     </div>
   );

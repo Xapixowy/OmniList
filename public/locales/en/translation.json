@@ -1,7 +1,15 @@
 {
+  "RouteTitles": {
+    "Dependencies": "Dependencies",
+    "Login": "Login",
+    "Register": "Register",
+    "Verify email": "Verify email",
+    "Forgot password": "Forgot password",
+    "Reset password": "Reset password"
+  },
   "HomeLayout": {
     "About": "About",
-    "Dependecies": "Dependecies",
+    "Dependencies": "Dependencies",
     "Authentication": "Authentication",
     "Login": "Login",
     "Sign Up": "Sign Up",
@@ -48,5 +56,16 @@
     "Idle": "Idle",
     "Do Not Disturb": "Do Not Disturb",
     "Offline": "Offline"
+  },
+  "LoginPage": {
+    "Enter your credentials to access your account": "Enter your credentials to access your account",
+    "Email address": "Email address",
+    "Password": "Password",
+    "Forgot password?": "Forgot password?",
+    "Sign in": "Sign in",
+    "Don't have an account?": "Don't have an account?",
+    "Sign up": "Sign up",
+    "By signing up, you agree to the": "By signing up, you agree to the",
+    "Terms of Service": "Terms of Service"
   }
 }

@@ -19,7 +19,7 @@ export const homeLayoutConfig: {
         title: 'HomeLayout.About',
         items: [
           {
-            title: 'HomeLayout.Dependecies',
+            title: 'HomeLayout.Dependencies',
             link: `${appRoutesConfig.about}/${appRoutesConfig.aboutRoutes.dependencies}`,
           },
         ],
@@ -41,7 +41,7 @@ export const homeLayoutConfig: {
       title: 'HomeLayout.About',
       links: [
         {
-          title: 'HomeLayout.Dependecies',
+          title: 'HomeLayout.Dependencies',
           link: `${appRoutesConfig.about}/${appRoutesConfig.aboutRoutes.dependencies}`,
         },
       ],
