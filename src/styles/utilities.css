@@ -14,3 +14,7 @@
     0 0,
     2rem 2rem;
 }
+
+.animate-show-up {
+  animation: showUp 1s ease-out forwards;
+}
