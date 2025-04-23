@@ -43,17 +43,23 @@ const Hyperlink = ({
   children,
   ...props
 }: HyperlinkProps) => {
+  const classes = cn(
+    HYPERLINK_CLASSES.default,
+    variant !== 'default' ? HYPERLINK_CLASSES.variants[variant] : '',
+    className,
+  );
+
+  if (!href) {
+    return (
+      <span className={classes} {...props}>
+        {children}
+        {iconVisibility && <TbExternalLink />}
+      </span>
+    );
+  }
+
   return (
-    <a
-      className={cn(
-        HYPERLINK_CLASSES.default,
-        variant !== 'default' ? HYPERLINK_CLASSES.variants[variant] : '',
-        className,
-      )}
-      href={href}
-      target={target}
-      {...props}
-    >
+    <a className={classes} href={href} target={target} {...props}>
       {children}
       {iconVisibility && <TbExternalLink />}
     </a>

@@ -1,4 +1,11 @@
 {
+  "FormValidationMessages": {
+    "Required": "{{field}} is required",
+    "Email": "Please enter a valid email address",
+    "MinLength": "{{field}} must be at least {{length}} characters long",
+    "MaxLength": "{{field}} must be at most {{length}} characters long",
+    "PasswordStrength": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+  },
   "RouteTitles": {
     "Dependencies": "Dependencies",
     "Login": "Login",
