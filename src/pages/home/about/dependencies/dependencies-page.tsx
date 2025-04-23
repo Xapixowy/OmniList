@@ -1,4 +1,5 @@
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
+import Heading from '@/components/ui/heading';
 import { useTranslation } from 'react-i18next';
 import AnimeAndMangaApiAttribution from './components/anime-and-manga-api-attribution';
 import BooksApiAttribution from './components/books-api-attribution';
@@ -11,7 +12,7 @@ const DependenciesPage = () => {
   return (
     <div className='relative border-t border-t-zinc-700'>
       <MaxWidthWrapper className='flex flex-col gap-8 px-8 py-20'>
-        <h1 className='display'>{t('DependenciesPage.Dependencies & Attributions')}</h1>
+        <Heading variant='display'>{t('DependenciesPage.Dependencies & Attributions')}</Heading>
         <p>
           {t(
             "DependenciesPage.OmniList uses several external APIs to provide data for different media types. We're grateful to these services for making their data available",

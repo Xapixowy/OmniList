@@ -18,7 +18,7 @@ export const usePageTitle = (): {
     };
   }
 
-  const deepestRouteData = deepestRoute.data as Record<string, unknown>;
+  const deepestRouteData = deepestRoute.handle as Record<string, unknown>;
   const hasDeepestRouteTitle: boolean = Object.keys(deepestRouteData ?? {}).includes(APP_ROUTE_TITLE_KEY);
 
   if (!hasDeepestRouteTitle) {

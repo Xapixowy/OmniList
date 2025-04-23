@@ -17,7 +17,7 @@ const Review = (props: ReviewType) => {
       <div className='flex items-center gap-4'>
         <Avvvatars value={props.name} size={48} style='shape' />
         <div className='flex flex-col gap-1'>
-          <h6>{props.name}</h6>
+          <p className='font-semibold text-zinc-50'>{props.name}</p>
           <p className='text-sm'>{props.title}</p>
         </div>
       </div>

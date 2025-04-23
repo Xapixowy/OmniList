@@ -57,15 +57,19 @@
     "Do Not Disturb": "Do Not Disturb",
     "Offline": "Offline"
   },
-  "LoginPage": {
+  "RegisterPage": {
     "Enter your credentials to access your account": "Enter your credentials to access your account",
+    "Name": "Name",
     "Email address": "Email address",
     "Password": "Password",
-    "Forgot password?": "Forgot password?",
-    "Sign in": "Sign in",
-    "Don't have an account?": "Don't have an account?",
+    "Confirm password": "Confirm password",
     "Sign up": "Sign up",
     "By signing up, you agree to the": "By signing up, you agree to the",
     "Terms of Service": "Terms of Service"
+  },
+  "LoginPage": {
+    "Forgot password?": "Forgot password?",
+    "Sign in": "Sign in",
+    "Don't have an account?": "Don't have an account?"
   }
 }

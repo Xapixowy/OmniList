@@ -16,10 +16,14 @@ const CallToActionSection = () => {
         )}
       >
         <Link to={`${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.register}`}>
-          <Button variant='primary'>{t('LandingPage.Sign Up Now')}</Button>
+          <Button variant='primary' size='large' rounded>
+            {t('LandingPage.Sign Up Now')}
+          </Button>
         </Link>
         <Link to={`${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.login}`}>
-          <Button variant='secondary'>{t('LandingPage.Log In')}</Button>
+          <Button variant='secondary' size='large' rounded>
+            {t('LandingPage.Log In')}
+          </Button>
         </Link>
       </CallToAction>
     </section>

@@ -1,12 +1,13 @@
+import { APP_ROUTE_TITLE_KEY, appRouteTitlesConfig } from '@/configs/app-route-titles';
 import { appRoutesConfig } from '@/configs/app-routes';
 import HomeLayout from '@/layouts/home-layout/home-layout';
+import LoginPage from '@/pages/auth/login/login-page';
+import RegisterPage from '@/pages/auth/register/register-page';
+import DependenciesPage from '@/pages/home/about/dependencies/dependencies-page';
 import LandingPage from '@/pages/home/landing/landing-page';
+import UiTesterPage from '@/pages/ui-tester-page';
 import { createBrowserRouter, redirect, RouteObject, RouterProvider } from 'react-router';
-import App from './App';
-import { APP_ROUTE_TITLE_KEY, appRouteTitlesConfig } from './configs/app-route-titles';
-import LoginPage from './pages/auth/login/login-page';
-import DependenciesPage from './pages/home/about/dependencies/dependencies-page';
-import UiTesterPage from './pages/ui-tester-page';
+import App from './app';
 
 const homeRoutes: RouteObject = {
   path: appRoutesConfig.default,
@@ -26,9 +27,9 @@ const homeRoutes: RouteObject = {
         {
           path: appRoutesConfig.aboutRoutes.dependencies,
           Component: DependenciesPage,
-          loader: () => ({
+          handle: {
             [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.aboutRoutes?.dependencies,
-          }),
+          },
         },
       ],
     },
@@ -43,32 +44,33 @@ const authRoutes: RouteObject = {
       loader: () => redirect(appRoutesConfig.authRoutes.login),
     },
     {
+      path: appRoutesConfig.authRoutes.register,
+      Component: RegisterPage,
+      handle: {
+        [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.authRoutes?.register,
+      },
+    },
+    {
       path: appRoutesConfig.authRoutes.login,
       Component: LoginPage,
-      loader: () => ({
+      handle: {
         [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.authRoutes?.login,
-      }),
+      },
     },
   ],
 };
 
 const notFoundRoute: RouteObject = {
   path: appRoutesConfig.wildcard,
-  loader: () => {
-    redirect(appRoutesConfig.default);
-
-    return {
-      [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.wildcard,
-    };
+  handle: {
+    [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.wildcard,
   },
+  loader: () => redirect(appRoutesConfig.default),
 };
 
 const uiTesterRoute: RouteObject = {
   path: appRoutesConfig.uiTester,
   Component: UiTesterPage,
-  loader: () => ({
-    [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.uiTester,
-  }),
 };
 
 const appRoutes: RouteObject[] = [

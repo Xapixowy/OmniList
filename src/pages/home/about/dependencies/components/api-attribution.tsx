@@ -1,3 +1,4 @@
+import Heading from '@/components/ui/heading';
 import { ReactNode } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -16,9 +17,9 @@ type ApiAttributionProps = {
 const ApiAttribution = (props: ApiAttributionProps) => {
   return (
     <div className='flex flex-col gap-6'>
-      <h2 className='items-top flex gap-2'>
+      <Heading variant='h2' className='items-top flex gap-2'>
         {props.title} <span className='text-gradient text-base'>{props.service}</span>
-      </h2>
+      </Heading>
       <div className={`flex flex-col gap-8 md:flex-row ${props.className ?? ''}`}>
         <div>
           <div

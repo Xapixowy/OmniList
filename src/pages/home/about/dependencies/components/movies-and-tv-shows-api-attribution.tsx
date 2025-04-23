@@ -1,22 +1,21 @@
 import Callout from '@/components/ui/callout';
-import { type HyperlinkProps } from '@/components/ui/hyperlink';
 import HyperlinkList from '@/components/ui/hyperlink-list';
 import { useTranslation } from 'react-i18next';
 import ApiAttribution from './api-attribution';
 
+const LINKS = [
+  {
+    label: 'DependenciesPage.Visit TMDB',
+    href: 'https://www.themoviedb.org/',
+  },
+  {
+    label: 'DependenciesPage.API Documentation',
+    href: 'https://developer.themoviedb.org/docs/getting-started',
+  },
+];
+
 const MoviesAndTvShowsApiAttribution = () => {
   const { t } = useTranslation();
-
-  const links: HyperlinkProps[] = [
-    {
-      label: t('DependenciesPage.Visit TMDB'),
-      src: 'https://www.themoviedb.org/',
-    },
-    {
-      label: t('DependenciesPage.API Documentation'),
-      src: 'https://developer.themoviedb.org/docs/getting-started',
-    },
-  ];
 
   return (
     <ApiAttribution
@@ -35,7 +34,7 @@ const MoviesAndTvShowsApiAttribution = () => {
           "DependenciesPage.The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB's international focus and breadth of data is largely unmatched.",
         )}
       </p>
-      <HyperlinkList variant='primary' links={links} />
+      <HyperlinkList variant='primary' links={LINKS.map((link) => ({ ...link, children: t(link.label) }))} />
     </ApiAttribution>
   );
 };

@@ -31,6 +31,10 @@ const LoginPage = () => {
 
   return (
     <AuthLayout title={t('LoginPage.Enter your credentials to access your account')} footerChildren={Footer({ t })}>
+      <label htmlFor='email'>{t('LoginPage.Email address')}</label>
+      <input type='email' id='email' placeholder='raphael@example.net' />
+      <label htmlFor='password'>{t('LoginPage.Email address')}</label>
+      <input type='email' id='email' placeholder='raphael@example.net' />
       <button onClick={registerHandler}>Register</button>
       <button onClick={loginHandler}>Login</button>
     </AuthLayout>

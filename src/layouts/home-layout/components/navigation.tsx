@@ -1,55 +1,41 @@
+import Button from '@/components/ui/button';
+import Hyperlink from '@/components/ui/hyperlink';
 import { useNavigationCollapsedItemContext } from '@/contexts/navigation-collapsed-item';
+import { cn } from '@/functions/cn';
 import { findParrentElementWithDataAttribute } from '@/functions/find-parent-element-with-data-attribute';
-import { tw } from '@/functions/tw';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TbChevronDown } from 'react-icons/tb';
-import { NavLink, NavLinkRenderProps } from 'react-router';
+import { NavLink } from 'react-router';
 import { homeLayoutConfig } from '../configs/home-layout';
 import { translateNavigationList } from '../functions/translate-navigation-list';
-import { isNavigationItem, type NavigationItem, type NavigationItemVariant } from '../types/navigation-item';
+import { isNavigationItem, type NavigationItem } from '../types/navigation-item';
 import { type NavigationSection } from '../types/navigation-section';
 
 const NAVIGATION_COLLAPSE_ITEM_DATA_ATTRIBUTE = 'navigation-collapse-item';
+const NAVIGATION_ITEM_DEFAULT_VARIANT = 'default';
 
-const NavigationItem = ({ title, link, variant }: NavigationItem) => {
+const NavigationItem = ({ title, link, variant = NAVIGATION_ITEM_DEFAULT_VARIANT }: NavigationItem) => {
   const { setNavigationCollapsedItem } = useNavigationCollapsedItemContext();
 
-  const variantClasses: Record<
-    NavigationItemVariant,
-    {
-      default: string;
-      active?: string;
-      inactive?: string;
-    }
-  > = {
-    default: {
-      default: tw('link'),
-      active: tw('active'),
-    },
-    primary: {
-      default: tw('button button--secondary'),
-    },
-    secondary: {
-      default: tw(
-        'rounded-full px-5 py-2 text-zinc-200 outline outline-transparent hover:bg-zinc-700/30 hover:outline-zinc-700/30',
-      ),
-    },
-  };
-
-  const generateClassName = ({ isActive }: NavLinkRenderProps) => {
-    const variantObj = variantClasses[variant ?? 'default'];
-
-    const defaultClasses = variantObj.default;
-    const inactiveClasses = variantObj.inactive ?? '';
-    const activeClasses = variantObj.active ?? '';
-
-    return `no-underline ${defaultClasses} ${isActive ? activeClasses : inactiveClasses}`;
-  };
-
   return (
-    <NavLink end to={link} className={generateClassName} onClick={() => setNavigationCollapsedItem(null)}>
-      <span>{title}</span>
+    <NavLink end to={link} onClick={() => setNavigationCollapsedItem(null)}>
+      {({ isActive }) =>
+        variant !== 'default' ? (
+          <Button variant={variant} size='large' rounded>
+            {title}
+          </Button>
+        ) : (
+          <Hyperlink
+            iconVisibility={false}
+            className={cn('hover:no-underline', {
+              'active [&.active]:no-underline': isActive,
+            })}
+          >
+            {title}
+          </Hyperlink>
+        )
+      }
     </NavLink>
   );
 };
@@ -70,9 +56,13 @@ const NavigationSection = ({ id, title, items }: NavigationSection) => {
 
   return (
     <div className='relative' {...dynamicAttributes}>
-      <span className='link flex items-center gap-1 no-underline' onClick={collapseItemHandler}>
+      <Hyperlink
+        iconVisibility={false}
+        className='flex items-center gap-1 hover:no-underline'
+        onClick={collapseItemHandler}
+      >
         {title} <TbChevronDown className={`${isThisItemCollapsed ? 'rotate-180' : ''} transition-transform`} />
-      </span>
+      </Hyperlink>
       <div
         className={`absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-[calc(120%)] items-center justify-center rounded-sm bg-zinc-950/80 px-4 py-2 whitespace-nowrap ${isThisItemCollapsed ? 'block' : 'hidden'}`}
       >

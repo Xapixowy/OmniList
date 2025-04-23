@@ -28,7 +28,7 @@ const FooterNavigationLink = (props: FooterNavigationLinkProps) => {
 const FooterNavigationSection = (props: FooterNavigationSectionProps) => {
   return (
     <div className={`p flex flex-col gap-3 ${props.className ?? ''}`}>
-      <h6>{props.title}</h6>
+      <p className='font-semibold text-zinc-50'>{props.title}</p>
       <ul className='flex flex-col gap-2'>
         {props.links.map((link) => (
           <li key={link.title}>

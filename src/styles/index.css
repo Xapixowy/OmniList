@@ -48,6 +48,7 @@
   }
 
   html {
+    color-scheme: dark;
     @apply bg-zinc-950 font-sans text-zinc-50;
   }
 

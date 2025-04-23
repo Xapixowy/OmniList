@@ -1,5 +1,6 @@
 import heroBackgroundImage600 from '@/assets/landing-page/hero-background-600.webp';
 import Button from '@/components/ui/button';
+import Heading from '@/components/ui/heading';
 import { appRoutesConfig } from '@/configs/app-routes';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -10,13 +11,15 @@ const HeroSection = () => {
 
   return (
     <section className='relative flex flex-col items-center justify-center gap-8 px-8 py-40 text-center'>
-      <h1 className='display'>{t('LandingPage.Track Your Entertainment Journey')}</h1>
+      <Heading variant='display'>{t('LandingPage.Track Your Entertainment Journey')}</Heading>
       <div className='flex flex-col gap-2'>
         <p>{t('LandingPage.Keep track of your movies, TV shows, anime, books, and games all in one place.')}</p>
         <p>{t("LandingPage.Never lose track of what you've watched, read, or played again.")}</p>
       </div>
       <Link to={`${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.register}`}>
-        <Button variant='primary'>{t('LandingPage.Get Started')}</Button>
+        <Button variant='primary' size='large' rounded>
+          {t('LandingPage.Get Started')}
+        </Button>
       </Link>
       <LazyLoadImage
         visibleByDefault={true}

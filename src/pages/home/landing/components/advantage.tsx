@@ -1,3 +1,4 @@
+import Heading from '@/components/ui/heading';
 import { decode } from 'html-entities';
 import { IconType } from 'react-icons';
 
@@ -21,7 +22,9 @@ const Advantage = (props: AdvantageType) => {
         </div>
       </div>
       <div className='flex flex-col gap-1'>
-        <h3 className='heading-4'>{props.title}</h3>
+        <Heading variant='h3' style='h4'>
+          {props.title}
+        </Heading>
         <p>{decodedDescription}</p>
       </div>
     </div>
