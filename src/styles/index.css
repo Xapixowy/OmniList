@@ -36,24 +36,74 @@
   --color-my-accent-700: var(--color-fuchsia-700);
   --color-my-accent-800: var(--color-fuchsia-800);
   --color-my-accent-900: var(--color-fuchsia-900);
+
+  --color-default-background: color-mix(in oklab, var(--color-zinc-700) 20%, transparent);
+  --color-default-background-hover: color-mix(in oklab, var(--color-zinc-700) 30%, transparent);
+  --color-default-background-disabled: color-mix(in oklab, var(--color-zinc-700) 10%, transparent);
+  --color-default-text: var(--color-zinc-400);
+  --color-default-text-hover: var(--color-zinc-200);
+  --color-default-text-disabled: var(--color-zinc-600);
+
+  --color-success-background: color-mix(in oklab, var(--color-green-400) 20%, transparent);
+  --color-success-background-hover: color-mix(in oklab, var(--color-green-400) 30%, transparent);
+  --color-success-background-disabled: color-mix(in oklab, var(--color-green-400) 10%, transparent);
+  --color-success-text: var(--color-green-200);
+  --color-success-text-hover: var(--color-green-100);
+  --color-success-text-disabled: color-mix(in oklab, var(--color-green-200) 20%, transparent);
+
+  --color-danger-background: color-mix(in oklab, var(--color-red-400) 20%, transparent);
+  --color-danger-background-hover: color-mix(in oklab, var(--color-red-400) 30%, transparent);
+  --color-danger-background-disabled: color-mix(in oklab, var(--color-red-400) 10%, transparent);
+  --color-danger-text: var(--color-red-200);
+  --color-danger-text-hover: var(--color-red-100);
+  --color-danger-text-disabled: color-mix(in oklab, var(--color-red-200) 20%, transparent);
+
+  --color-warning-background: color-mix(in oklab, var(--color-yellow-400) 20%, transparent);
+  --color-warning-background-hover: color-mix(in oklab, var(--color-yellow-400) 30%, transparent);
+  --color-warning-background-disabled: color-mix(in oklab, var(--color-yellow-400) 10%, transparent);
+  --color-warning-text: var(--color-yellow-200);
+  --color-warning-text-hover: var(--color-yellow-100);
+  --color-warning-text-disabled: color-mix(in oklab, var(--color-yellow-200) 20%, transparent);
+
+  --color-info-background: color-mix(in oklab, var(--color-sky-400) 20%, transparent);
+  --color-info-background-hover: color-mix(in oklab, var(--color-sky-400) 30%, transparent);
+  --color-info-background-disabled: color-mix(in oklab, var(--color-sky-400) 10%, transparent);
+  --color-info-text: var(--color-sky-200);
+  --color-info-text-hover: var(--color-sky-100);
+  --color-info-text-disabled: color-mix(in oklab, var(--color-sky-200) 20%, transparent);
 }
 
+:root {
+  --color-text: var(--color-zinc-50);
+  --color-background: var(--color-zinc-950);
+
+  --max-width: 1280px;
+  --header-height: 5rem;
+
+  /* Toastify Reset Styles */
+  --toastify-color-light: transparent;
+  --toastify-color-dark: transparent;
+  --toastify-toast-background: transparent;
+  --toastify-toast-padding: 0;
+  --toastify-toast-bd-radius: 0;
+  --toastify-toast-shadow: 0;
+  --toastify-font-family: inherit;
+  --toastify-z-index: 9999;
+  --toastify-text-color-light: inherit;
+  --toastify-text-color-dark: inherit;
+}
 @layer base {
   @import './reset.css';
-
-  :root {
-    --max-width: 1280px;
-
-    --header-height: 5rem;
-  }
-
   html {
     color-scheme: dark;
-    @apply bg-zinc-950 font-sans text-zinc-50;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-background);
   }
 
   body {
-    @apply min-h-screen overflow-x-hidden;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
 }
 

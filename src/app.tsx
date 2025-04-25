@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useMatches } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 import { appConfig } from './configs/app';
 import { usePageTitle } from './hooks/use-page-title';
 
@@ -17,6 +18,11 @@ const App = () => {
     setPageTitle();
   }, [matches]);
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <ToastContainer />
+    </>
+  );
 };
 export default App;

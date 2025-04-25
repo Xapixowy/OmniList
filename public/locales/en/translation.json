@@ -72,7 +72,10 @@
     "Confirm password": "Confirm password",
     "Sign up": "Sign up",
     "By signing up, you agree to the": "By signing up, you agree to the",
-    "Terms of Service": "Terms of Service"
+    "Terms of Service": "Terms of Service",
+    "Registration": "Registration",
+    "Register successful! You can now log in": "Register successful! You can now log in.",
+    "Register failed! Please try again": "Register failed! Please try again."
   },
   "LoginPage": {
     "Forgot password?": "Forgot password?",

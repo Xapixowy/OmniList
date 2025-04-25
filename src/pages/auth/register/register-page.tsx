@@ -6,6 +6,7 @@ import { appRoutesConfig } from '@/configs/app-routes';
 import { RegisterForm, RegisterFormFields, RegisterFormSchema } from '@/forms/declarations/register';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { AuthClient } from '@/services/api-clients/auth-client';
+import { ToastService } from '@/services/toast-service';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { TFunction } from 'i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -34,13 +35,24 @@ const RegisterPage = () => {
   });
 
   const submitHandler: SubmitHandler<RegisterForm> = async (data: RegisterForm): Promise<void> => {
-    await authClient.register(
+    const isRegisterSuccessful = !!(await authClient.register(
       data[RegisterFormFields.EMAIL],
       data[RegisterFormFields.PASSWORD],
       data[RegisterFormFields.NAME],
-    );
+    ));
 
+    if (!isRegisterSuccessful) {
+      ToastService.error(t('RegisterPage.Registration'), t('RegisterPage.Register failed! Please try again'));
+      return;
+    }
+
+    await authClient.login(data[RegisterFormFields.EMAIL], data[RegisterFormFields.PASSWORD]);
+    await authClient.verify();
     await navigate(`/${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.login}`);
+    ToastService.success(
+      t('RegisterPage.Registration'),
+      t('RegisterPage.Register successful! Please check your email for verification'),
+    );
   };
 
   return (

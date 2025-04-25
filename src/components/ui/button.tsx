@@ -15,19 +15,29 @@ const LOADER_CLASSES = {
     large: 'h-4 w-4',
   },
 };
-const BUTTON_CLASSES = {
-  default: `group h-min cursor-pointer rounded-lg bg-zinc-700/20 px-4 py-1 text-sm text-zinc-400 outline outline-zinc-700/20 transition-colors hover:bg-zinc-700/30 hover:text-zinc-200 hover:outline-zinc-700/30 disabled:cursor-auto disabled:bg-zinc-700/10 disabled:text-zinc-600 disabled:outline-zinc-700/10`,
+const BUTTON_CLASSES: {
+  default: string;
+  variants: {
+    [key in Exclude<ButtonVariant, 'default'>]: string;
+  };
+  sizes: {
+    [key in ButtonSize]: string;
+  };
+  rounded: string;
+} = {
+  default: `group h-min cursor-pointer rounded-lg bg-default-background px-4 py-1 text-sm text-default-text outline outline-default-background transition-colors hover:bg-default-background-hover hover:text-default-text-hover hover:outline-default-background-hover disabled:cursor-auto disabled:bg-default-background-disabled disabled:text-default-text-disabled disabled:outline-default-background-disabled`,
   variants: {
     primary:
       'bg-zinc-100 outline-zinc-100 hover:bg-zinc-100 hover:outline-zinc-100 disabled:bg-zinc-200/70 disabled:outline-zinc-200/70',
     secondary:
       'text-zinc-200 outline-zinc-100/20 hover:text-zinc-50 hover:outline-zinc-100/50 disabled:outline-zinc-500/20',
     success:
-      'bg-green-400/20 text-green-200 outline-green-400/20 hover:bg-green-400/30 hover:text-green-100 hover:outline-green-400/30 disabled:bg-green-400/10 disabled:text-green-200/20 disabled:outline-green-400/10',
+      'bg-success-background text-success-text outline-success-background hover:bg-success-background-hover hover:text-succcess-text-hover hover:outline-success-background-hover disabled:bg-success-background-disabled disabled:text-success-text-disabled disabled:outline-success-background-disabled',
     warning:
-      'bg-amber-400/20 text-amber-200 outline-amber-400/20 hover:bg-amber-400/30 hover:text-amber-100 hover:outline-amber-400/30 disabled:bg-amber-400/10 disabled:text-amber-200/20 disabled:outline-amber-400/10',
+      'bg-warning-background text-warning-text outline-warning-background hover:bg-warning-background-hover hover:text-succcess-text-hover hover:outline-warning-background-hover disabled:bg-warning-background-disabled disabled:text-warning-text-disabled disabled:outline-warning-background-disabled',
     danger:
-      'bg-red-400/20 text-red-200 outline-red-400/20 hover:bg-red-400/30 hover:text-red-100 hover:outline-red-400/30 disabled:bg-red-400/10 disabled:text-red-200/20 disabled:outline-red-400/10',
+      'bg-danger-background text-danger-text outline-danger-background hover:bg-danger-background-hover hover:text-succcess-text-hover hover:outline-danger-background-hover disabled:bg-danger-background-disabled disabled:text-danger-text-disabled disabled:outline-danger-background-disabled',
+    info: 'bg-info-background text-info-text outline-info-background hover:bg-info-background-hover hover:text-succcess-text-hover hover:outline-info-background-hover disabled:bg-info-background-disabled disabled:text-info-text-disabled disabled:outline-info-background-disabled',
   },
   sizes: {
     medium: '',
@@ -35,7 +45,12 @@ const BUTTON_CLASSES = {
   },
   rounded: 'rounded-full',
 };
-const BUTTON_TITLE_CLASSES = {
+const BUTTON_TITLE_CLASSES: {
+  default: string;
+  variants: {
+    [key in Exclude<ButtonVariant, 'default'>]: string;
+  };
+} = {
   default: 'inline-flex items-center gap-1 whitespace-nowrap',
   variants: {
     primary:
@@ -44,10 +59,11 @@ const BUTTON_TITLE_CLASSES = {
     success: '',
     warning: '',
     danger: '',
+    info: '',
   },
 };
 
-type ButtonVariant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+type ButtonVariant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
 type ButtonSize = 'medium' | 'large';
 
 type LoaderProps = {
@@ -103,8 +119,8 @@ const Button = ({
 }: ButtonProps) => {
   const classes = cn(
     BUTTON_CLASSES.default,
-    variant === DEFAULT_VARIANT ? '' : BUTTON_CLASSES.variants[variant],
-    size === DEFAULT_SIZE ? '' : BUTTON_CLASSES.sizes[size],
+    variant !== 'default' ? BUTTON_CLASSES.variants[variant] : '',
+    size !== 'medium' ? BUTTON_CLASSES.sizes[size] : '',
     rounded ? BUTTON_CLASSES.rounded : '',
     className,
   );
@@ -114,7 +130,7 @@ const Button = ({
       <span
         className={cn(
           BUTTON_TITLE_CLASSES.default,
-          variant === DEFAULT_VARIANT ? '' : BUTTON_TITLE_CLASSES.variants[variant],
+          variant !== 'default' ? BUTTON_TITLE_CLASSES.variants[variant] : '',
         )}
       >
         {loading && <Loader size={size} isPrimary={variant === 'primary'} />} {children}

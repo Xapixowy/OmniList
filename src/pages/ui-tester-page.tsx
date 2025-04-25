@@ -2,8 +2,42 @@ import Button from '@/components/ui/button';
 import Heading from '@/components/ui/heading';
 import Input from '@/components/ui/input';
 import Label from '@/components/ui/label';
+import { ToastService } from '@/services/toast-service';
+import { useEffect } from 'react';
+import { ToastOptions } from 'react-toastify';
+
+const testToasts = (): void => {
+  const options: ToastOptions = {
+    // autoClose: false,
+  };
+
+  ToastService.success(
+    'Success',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tempor odio. Sed sagittis, dolor quis iaculis ultrices, lacus eros semper ante, sit amet gravida justo augue sit amet nunc.',
+    options,
+  );
+  ToastService.error(
+    'Error',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tempor odio. Sed sagittis, dolor quis iaculis ultrices, lacus eros semper ante, sit amet gravida justo augue sit amet nunc.',
+    options,
+  );
+  ToastService.info(
+    'Info',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tempor odio. Sed sagittis, dolor quis iaculis ultrices, lacus eros semper ante, sit amet gravida justo augue sit amet nunc.',
+    options,
+  );
+  ToastService.warning(
+    'Warning',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tempor odio. Sed sagittis, dolor quis iaculis ultrices, lacus eros semper ante, sit amet gravida justo augue sit amet nunc.',
+    options,
+  );
+};
 
 const UiTesterPage = () => {
+  useEffect(() => {
+    testToasts();
+  }, []);
+
   return (
     <>
       <div className='flex flex-col gap-4 p-4'>
@@ -176,6 +210,20 @@ const UiTesterPage = () => {
               Danger
             </Button>
           </div>
+          <div className='flex gap-4'>
+            <Button variant='info' size='large'>
+              Info
+            </Button>
+            <Button variant='info' size='large' rounded>
+              Info
+            </Button>
+            <Button variant='info' size='large' disabled>
+              Info
+            </Button>
+            <Button variant='info' size='large' loading>
+              Info
+            </Button>
+          </div>
         </div>
       </div>
       <div className='flex flex-col gap-4 p-4'>
@@ -273,7 +321,7 @@ const UiTesterPage = () => {
         <div className='flex flex-col gap-2'>
           <Label>Checkbox</Label>
           <div className='flex gap-2'>
-            <Input type='checkbox' id='checkbox1' checked />
+            <Input type='checkbox' id='checkbox1' />
             <Input type='checkbox' id='checkbox2' />
           </div>
         </div>

@@ -37,6 +37,20 @@ export class AuthClient {
     return promise.data;
   }
 
+  async verify(): Promise<Models.Token | null> {
+    const promise = await tryCatch<Models.Token, AppwriteException>(
+      this.account.createVerification('http://localhost:3000'),
+    );
+
+    console.log(promise);
+
+    if (promise.error) {
+      return null;
+    }
+
+    return promise.data;
+  }
+
   async login(email: string, password: string): Promise<Models.Session | null> {
     const promise = await tryCatch<Models.Session, AppwriteException>(
       this.account.createEmailPasswordSession(email, password),
