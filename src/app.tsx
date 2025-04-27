@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { Outlet, useMatches } from 'react-router';
-import { ToastContainer } from 'react-toastify';
 import { appConfig } from './configs/app';
 import { usePageTitle } from './hooks/use-page-title';
 
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       <Outlet />
-      <ToastContainer />
+      <Toaster />
     </>
   );
 };

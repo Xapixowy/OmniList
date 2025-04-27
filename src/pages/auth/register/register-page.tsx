@@ -1,5 +1,6 @@
 import Button from '@/components/ui/button';
 import FormError from '@/components/ui/forms/form-error';
+import Hyperlink from '@/components/ui/hyperlink';
 import Input from '@/components/ui/input';
 import Label from '@/components/ui/label';
 import { appRoutesConfig } from '@/configs/app-routes';
@@ -56,7 +57,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <AuthLayout title={t('RegisterPage.Enter your credentials to access your account')} footerChildren={Footer({ t })}>
+    <AuthLayout title={t('RegisterPage.Fill the form to start tracking')} footerChildren={Footer({ t })}>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit(submitHandler)}>
         <div className='flex flex-col gap-2'>
           <Label htmlFor={RegisterFormFields.NAME}>{t('RegisterPage.Name')}</Label>
@@ -98,6 +99,17 @@ const RegisterPage = () => {
             {t('RegisterPage.Sign up')}
           </Button>
         </div>
+        <p className='text-center text-sm text-zinc-400'>
+          <span>{t('RegisterPage.Already have an account?')} </span>
+          <Hyperlink
+            type='internal'
+            iconVisibility={false}
+            variant='primary'
+            href={`/${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.login}`}
+          >
+            {t('RegisterPage.Log in')}
+          </Hyperlink>
+        </p>
       </form>
     </AuthLayout>
   );

@@ -65,7 +65,7 @@
     "Offline": "Offline"
   },
   "RegisterPage": {
-    "Enter your credentials to access your account": "Enter your credentials to access your account",
+    "Fill the form to start tracking": "Fill the form to start tracking",
     "Name": "Name",
     "Email address": "Email address",
     "Password": "Password",
@@ -74,12 +74,21 @@
     "By signing up, you agree to the": "By signing up, you agree to the",
     "Terms of Service": "Terms of Service",
     "Registration": "Registration",
-    "Register successful! You can now log in": "Register successful! You can now log in.",
-    "Register failed! Please try again": "Register failed! Please try again."
+    "Register successful! Please check your email for verification": "Register successful! Please check your email for verification.",
+    "Register failed! Please try again": "Register failed! Please try again.",
+    "Already have an account?": "Already have an account?",
+    "Log in": "Log in"
   },
   "LoginPage": {
+    "Enter your credentials to access your account": "Enter your credentials to access your account",
+    "Login": "Login",
+    "Invalid credentials": "Invalid credentials",
+    "You have successfully logged in to your account": "You have successfully logged in to your account",
     "Forgot password?": "Forgot password?",
-    "Sign in": "Sign in",
-    "Don't have an account?": "Don't have an account?"
+    "Log in": "Log in",
+    "Email address": "Email address",
+    "Password": "Password",
+    "Don't have an account?": "Don't have an account?",
+    "Sign up": "Sign up"
   }
 }

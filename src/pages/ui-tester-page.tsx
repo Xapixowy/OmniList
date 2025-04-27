@@ -4,11 +4,11 @@ import Input from '@/components/ui/input';
 import Label from '@/components/ui/label';
 import { ToastService } from '@/services/toast-service';
 import { useEffect } from 'react';
-import { ToastOptions } from 'react-toastify';
+import { ToastOptions } from 'react-hot-toast';
 
 const testToasts = (): void => {
   const options: ToastOptions = {
-    // autoClose: false,
+    duration: 99999999,
   };
 
   ToastService.success(
@@ -53,7 +53,7 @@ const UiTesterPage = () => {
       <div className='flex flex-col gap-4 p-4'>
         <div className='flex flex-col gap-4'>
           <div className='flex gap-4'>
-            <Button>Default</Button>
+            <Button onClick={testToasts}>Default</Button>
             <Button rounded>Default</Button>
             <Button disabled>Default</Button>
             <Button loading>Default</Button>

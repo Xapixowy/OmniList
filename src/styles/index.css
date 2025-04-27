@@ -79,18 +79,6 @@
 
   --max-width: 1280px;
   --header-height: 5rem;
-
-  /* Toastify Reset Styles */
-  --toastify-color-light: transparent;
-  --toastify-color-dark: transparent;
-  --toastify-toast-background: transparent;
-  --toastify-toast-padding: 0;
-  --toastify-toast-bd-radius: 0;
-  --toastify-toast-shadow: 0;
-  --toastify-font-family: inherit;
-  --toastify-z-index: 9999;
-  --toastify-text-color-light: inherit;
-  --toastify-text-color-dark: inherit;
 }
 @layer base {
   @import './reset.css';

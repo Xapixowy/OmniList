@@ -27,7 +27,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
             </Heading>
           )}
         </header>
-        <main className='before:from-my-accent-600/50 before:to-my-secondary-600/50 before:via-my-primary-600/30 relative my-12 grid min-h-108 min-w-86 place-items-center before:absolute before:inset-[-1px] before:-z-1 before:rounded-3xl before:bg-gradient-to-tr md:min-w-96'>
+        <main className='before:from-my-accent-600/50 before:to-my-secondary-600/50 before:via-my-primary-600/30 relative my-12 grid min-h-48 min-w-86 place-items-center before:absolute before:inset-[-1px] before:-z-1 before:rounded-3xl before:bg-gradient-to-tr md:min-w-96'>
           <div className='min-h-[inherit] w-full rounded-3xl bg-zinc-950 p-8'>{props.children}</div>
           <LazyLoadImage
             visibleByDefault={true}

@@ -1,14 +1,10 @@
-import Toast, { ToastData } from '@/components/libraries/toast';
-import { toast, ToastContentProps, ToastOptions } from 'react-toastify';
+import Toast, { ToastType } from '@/components/libraries/toast';
+import toast, { ToastOptions } from 'react-hot-toast';
 
 export class ToastService {
   static options: ToastOptions = {
-    closeButton: false,
-    customProgressBar: true,
     position: 'top-right',
-    autoClose: 5000,
-    pauseOnHover: true,
-    pauseOnFocusLoss: true,
+    duration: 4000,
   };
 
   public static success(title: string, message: string, options?: ToastOptions): void {
@@ -27,19 +23,12 @@ export class ToastService {
     this.toast(title, message, 'warning', options);
   }
 
-  private static toast(title: string, message: string, type: ToastOptions['type'], options: ToastOptions = {}): void {
-    const toastData: ToastData = {
-      type,
-      message,
-      title,
-    };
+  private static toast(title: string, message: string, type: ToastType, options: ToastOptions = {}): string {
+    const toastOptions = { ...this.options, ...options };
 
-    const toastOptions = {
-      ...this.options,
-      ...options,
-      data: toastData,
-    };
-
-    toast((props: ToastContentProps<ToastData>) => <Toast {...props} />, toastOptions);
+    return toast.custom(
+      <Toast title={title} message={message} type={type} duration={toastOptions.duration} />,
+      toastOptions,
+    );
   }
 }
