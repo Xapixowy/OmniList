@@ -1,7 +1,7 @@
 import heroBackgroundImage600 from '@/assets/landing-page/hero-background-600.webp';
 import Button from '@/components/ui/button';
 import Heading from '@/components/ui/heading';
-import { appRoutesConfig } from '@/configs/app-routes';
+import { APP_ROUTES_CONFIG } from '@/configs/app-routes';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router';
@@ -16,7 +16,7 @@ const HeroSection = () => {
         <p>{t('LandingPage.Keep track of your movies, TV shows, anime, books, and games all in one place.')}</p>
         <p>{t("LandingPage.Never lose track of what you've watched, read, or played again.")}</p>
       </div>
-      <Link to={`${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.register}`}>
+      <Link to={`${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.register}`}>
         <Button variant='primary' size='large' rounded>
           {t('LandingPage.Get Started')}
         </Button>

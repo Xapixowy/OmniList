@@ -1,10 +1,10 @@
 import MaxWidthWrapper from '@/components/layout/max-width-wrapper';
 import SocialMediaLink from '@/components/ui/social-media-link';
-import { appRoutesConfig } from '@/configs/app-routes';
+import { APP_ROUTES_CONFIG } from '@/configs/app-routes';
 import DiscordPresenceLink from '@/features/discord-presence-link';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { homeLayoutConfig } from '../configs/home-layout';
+import { HOME_LAYOUT_CONFIG } from '../configs/home-layout';
 
 export type FooterNavigationSectionProps = {
   title: string;
@@ -48,7 +48,7 @@ const Footer = () => {
     <footer className='border-t border-t-zinc-700'>
       <MaxWidthWrapper className='p-8'>
         <section className='grid grid-cols-2 gap-12 p-2 pb-8 md:grid-cols-3 lg:grid-cols-4'>
-          {homeLayoutConfig.footerNavigationSections
+          {HOME_LAYOUT_CONFIG.footerNavigationSections
             .map((section) => ({
               title: t(section.title),
               links: section.links.map((link) => ({ ...link, title: t(link.title) })),
@@ -61,14 +61,14 @@ const Footer = () => {
           <p className='flex gap-1 text-sm text-zinc-400'>
             <span>&copy;</span>
             <span>{currentYear}</span>
-            <Link to={appRoutesConfig.default} className=''>
+            <Link to={APP_ROUTES_CONFIG.default} className=''>
               OmniList.
             </Link>
             <span>{t('HomeLayout.All rights reserved.')}</span>
           </p>
           <div>
-            <DiscordPresenceLink userId={homeLayoutConfig.discordUserId} variant='small' />
-            {homeLayoutConfig.socialLinks.map((link) => (
+            <DiscordPresenceLink userId={HOME_LAYOUT_CONFIG.discord.userId} variant='small' />
+            {HOME_LAYOUT_CONFIG.socialLinks.map((link) => (
               <SocialMediaLink key={link.name} {...link} variant='small' />
             ))}
           </div>

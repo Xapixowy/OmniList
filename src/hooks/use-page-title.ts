@@ -1,4 +1,4 @@
-import { APP_ROUTE_TITLE_KEY } from '@/configs/app-route-titles';
+import { APP_ROUTE_TITLE_KEY } from '@/configs/app-routes';
 import { useTranslation } from 'react-i18next';
 import { useMatches } from 'react-router';
 

@@ -1,5 +1,4 @@
-import { APP_ROUTE_TITLE_KEY, appRouteTitlesConfig } from '@/configs/app-route-titles';
-import { appRoutesConfig } from '@/configs/app-routes';
+import { APP_ROUTE_TITLE_KEY, APP_ROUTE_TITLES_CONFIG, APP_ROUTES_CONFIG } from '@/configs/app-routes';
 import HomeLayout from '@/layouts/home-layout/home-layout';
 import LoginPage from '@/pages/auth/login/login-page';
 import RegisterPage from '@/pages/auth/register/register-page';
@@ -8,27 +7,29 @@ import LandingPage from '@/pages/home/landing/landing-page';
 import UiTesterPage from '@/pages/ui-tester-page';
 import { createBrowserRouter, redirect, RouteObject, RouterProvider } from 'react-router';
 import App from './app';
+import ProtectedRoute from './components/guards/protected-route';
+import VerifyEmailPage from './pages/auth/verify-email/verify-email-page';
 
 const homeRoutes: RouteObject = {
-  path: appRoutesConfig.default,
-  Component: HomeLayout,
+  path: APP_ROUTES_CONFIG.default,
+  element: <HomeLayout />,
   children: [
     {
       index: true,
-      Component: LandingPage,
+      element: <LandingPage />,
     },
     {
-      path: appRoutesConfig.about,
+      path: APP_ROUTES_CONFIG.about,
       children: [
         {
           index: true,
-          loader: () => redirect(appRoutesConfig.aboutRoutes.dependencies),
+          loader: () => redirect(APP_ROUTES_CONFIG.aboutRoutes.dependencies),
         },
         {
-          path: appRoutesConfig.aboutRoutes.dependencies,
-          Component: DependenciesPage,
+          path: APP_ROUTES_CONFIG.aboutRoutes.dependencies,
+          element: <DependenciesPage />,
           handle: {
-            [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.aboutRoutes?.dependencies,
+            [APP_ROUTE_TITLE_KEY]: APP_ROUTE_TITLES_CONFIG.aboutRoutes?.dependencies,
           },
         },
       ],
@@ -37,47 +38,62 @@ const homeRoutes: RouteObject = {
 };
 
 const authRoutes: RouteObject = {
-  path: appRoutesConfig.auth,
+  path: APP_ROUTES_CONFIG.auth,
   children: [
     {
       index: true,
-      loader: () => redirect(appRoutesConfig.authRoutes.login),
+      loader: () => redirect(APP_ROUTES_CONFIG.authRoutes.login),
     },
     {
-      path: appRoutesConfig.authRoutes.register,
-      Component: RegisterPage,
+      path: APP_ROUTES_CONFIG.authRoutes.register,
+      element: <RegisterPage />,
       handle: {
-        [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.authRoutes?.register,
+        [APP_ROUTE_TITLE_KEY]: APP_ROUTE_TITLES_CONFIG.authRoutes?.register,
       },
     },
     {
-      path: appRoutesConfig.authRoutes.login,
-      Component: LoginPage,
+      path: APP_ROUTES_CONFIG.authRoutes.login,
+      element: <LoginPage />,
       handle: {
-        [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.authRoutes?.login,
+        [APP_ROUTE_TITLE_KEY]: APP_ROUTE_TITLES_CONFIG.authRoutes?.login,
+      },
+    },
+    {
+      path: APP_ROUTES_CONFIG.authRoutes.verifyEmail,
+      element: <VerifyEmailPage />,
+      handle: {
+        [APP_ROUTE_TITLE_KEY]: APP_ROUTE_TITLES_CONFIG.authRoutes?.verifyEmail,
       },
     },
   ],
 };
 
 const notFoundRoute: RouteObject = {
-  path: appRoutesConfig.wildcard,
+  path: APP_ROUTES_CONFIG.wildcard,
   handle: {
-    [APP_ROUTE_TITLE_KEY]: appRouteTitlesConfig.wildcard,
+    [APP_ROUTE_TITLE_KEY]: APP_ROUTE_TITLES_CONFIG.wildcard,
   },
-  loader: () => redirect(appRoutesConfig.default),
+  loader: () => redirect(APP_ROUTES_CONFIG.default),
 };
 
 const uiTesterRoute: RouteObject = {
-  path: appRoutesConfig.uiTester,
-  Component: UiTesterPage,
+  path: APP_ROUTES_CONFIG.uiTester,
+  element: <UiTesterPage />,
 };
 
 const appRoutes: RouteObject[] = [
   {
-    path: appRoutesConfig.default,
-    Component: App,
-    children: [homeRoutes, authRoutes, uiTesterRoute, notFoundRoute],
+    path: APP_ROUTES_CONFIG.default,
+    element: <App />,
+    children: [
+      homeRoutes,
+      {
+        element: <ProtectedRoute to={APP_ROUTES_CONFIG.default} />,
+        children: [authRoutes],
+      },
+      uiTesterRoute,
+      notFoundRoute,
+    ],
   },
 ];
 

@@ -19,24 +19,15 @@ export const useDiscordPresenceContext = (): DiscordPresenceContext => {
   return context;
 };
 
-export const DiscordPresenceProvider = ({
-  value,
-  userId,
-  children,
-}: {
-  value: DiscordStatus;
-  userId: string;
-  children: ReactNode;
-}) => {
-  const [status, setStatus] = useState<DiscordStatus>(value);
-
+export const DiscordPresenceProvider = (props: { status: DiscordStatus; userId: string; children: ReactNode }) => {
+  const [status, setStatus] = useState<DiscordStatus>(props.status);
   const discordPresenceClient = DiscordPresenceClient.getInstance();
 
   useEffect(() => {
-    let intervalId: number;
+    let intervalId: NodeJS.Timeout;
 
     const fetchStatus = async () => {
-      const data = await discordPresenceClient.userPresence(userId);
+      const data = await discordPresenceClient.userPresence(props.userId);
 
       if (!data) {
         return;
@@ -47,7 +38,7 @@ export const DiscordPresenceProvider = ({
 
     fetchStatus();
 
-    const wsDisconnect = discordPresenceClient.userPresenceWebSocket(userId, (data) => {
+    const wsDisconnect = discordPresenceClient.userPresenceWebSocket(props.userId, (data) => {
       if (!data) {
         fetchStatus();
         intervalId = setInterval(fetchStatus, 60000);
@@ -63,5 +54,7 @@ export const DiscordPresenceProvider = ({
     };
   }, []);
 
-  return <DiscordPresenceContext.Provider value={{ status, setStatus }}>{children}</DiscordPresenceContext.Provider>;
+  return (
+    <DiscordPresenceContext.Provider value={{ status, setStatus }}>{props.children}</DiscordPresenceContext.Provider>
+  );
 };

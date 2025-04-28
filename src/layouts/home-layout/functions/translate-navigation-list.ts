@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next';
-import { isNavigationItem, NavigationItem } from '../types/navigation-item';
-import { NavigationSection } from '../types/navigation-section';
+import { isNavigationItem, NavigationItem } from '../features/navigation/types/navigation-item';
+import { NavigationSection } from '../features/navigation/types/navigation-section';
 
 const translateItem = (item: NavigationItem, t: TFunction<'translate', undefined>) => ({
   ...item,
@@ -10,10 +10,9 @@ const translateItem = (item: NavigationItem, t: TFunction<'translate', undefined
 export const translateNavigationList = (
   items: (NavigationItem | NavigationSection)[],
   t: TFunction<'translate', undefined>,
-): (NavigationItem | NavigationSection)[] => {
-  return items.map((item) =>
+): (NavigationItem | NavigationSection)[] =>
+  items.map((item) =>
     isNavigationItem(item)
       ? translateItem(item, t)
       : { ...item, title: t(item.title), items: item.items.map((item) => translateItem(item, t)) },
   );
-};

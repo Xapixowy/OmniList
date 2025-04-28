@@ -51,6 +51,9 @@ const Hyperlink = ({
   const classes = cn(
     HYPERLINK_CLASSES.default,
     variant !== 'default' ? HYPERLINK_CLASSES.variants[variant] : '',
+    {
+      'cursor-auto': !href && !props.onClick,
+    },
     className,
   );
 

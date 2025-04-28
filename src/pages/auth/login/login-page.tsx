@@ -3,7 +3,7 @@ import FormError from '@/components/ui/forms/form-error';
 import Hyperlink from '@/components/ui/hyperlink';
 import Input from '@/components/ui/input';
 import Label from '@/components/ui/label';
-import { appRoutesConfig } from '@/configs/app-routes';
+import { APP_ROUTES_CONFIG } from '@/configs/app-routes';
 import { LoginForm, LoginFormFields, LoginFormSchema } from '@/forms/declarations/login';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { AuthClient } from '@/services/api-clients/auth-client';
@@ -26,14 +26,14 @@ const LoginPage = () => {
   });
 
   const submitHandler: SubmitHandler<LoginForm> = async (data: LoginForm): Promise<void> => {
-    const isLoginSuccessful = !!(await authClient.login(data[LoginFormFields.EMAIL], data[LoginFormFields.PASSWORD]));
+    const result = await authClient.login(data[LoginFormFields.EMAIL], data[LoginFormFields.PASSWORD]);
 
-    if (!isLoginSuccessful) {
+    if (result.error) {
       ToastService.error(t('LoginPage.Login'), t('LoginPage.Invalid credentials'));
       return;
     }
 
-    await navigate(appRoutesConfig.default);
+    await navigate(APP_ROUTES_CONFIG.default);
     ToastService.success(t('LoginPage.Login'), t('LoginPage.You have successfully logged in to your account'));
   };
 
@@ -63,7 +63,7 @@ const LoginPage = () => {
             <Hyperlink
               type='internal'
               iconVisibility={false}
-              href={`/${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.forgotPassword}`}
+              href={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.forgotPassword}`}
             >
               {t('LoginPage.Forgot password?')}
             </Hyperlink>
@@ -80,7 +80,7 @@ const LoginPage = () => {
             type='internal'
             iconVisibility={false}
             variant='primary'
-            href={`/${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.register}`}
+            href={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.register}`}
           >
             {t('LoginPage.Sign up')}
           </Hyperlink>

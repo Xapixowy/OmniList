@@ -1,4 +1,4 @@
-import { appRoutesConfig } from '@/configs/app-routes';
+import { APP_ROUTES_CONFIG } from '@/configs/app-routes';
 import { Link } from 'react-router';
 
 type BrandLinksProps = {
@@ -9,7 +9,7 @@ type BrandLinksProps = {
 const BrandLink = (props: BrandLinksProps) => {
   return (
     <Link
-      to={appRoutesConfig.default}
+      to={APP_ROUTES_CONFIG.default}
       className={`text-2xl font-extrabold text-zinc-50 no-underline ${props.className ?? ''}`}
       onClick={props.onClick}
     >

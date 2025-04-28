@@ -3,7 +3,7 @@ import FormError from '@/components/ui/forms/form-error';
 import Hyperlink from '@/components/ui/hyperlink';
 import Input from '@/components/ui/input';
 import Label from '@/components/ui/label';
-import { appRoutesConfig } from '@/configs/app-routes';
+import { APP_ROUTES_CONFIG } from '@/configs/app-routes';
 import { RegisterForm, RegisterFormFields, RegisterFormSchema } from '@/forms/declarations/register';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { AuthClient } from '@/services/api-clients/auth-client';
@@ -36,20 +36,20 @@ const RegisterPage = () => {
   });
 
   const submitHandler: SubmitHandler<RegisterForm> = async (data: RegisterForm): Promise<void> => {
-    const isRegisterSuccessful = !!(await authClient.register(
+    const result = await authClient.register(
       data[RegisterFormFields.EMAIL],
       data[RegisterFormFields.PASSWORD],
       data[RegisterFormFields.NAME],
-    ));
+    );
 
-    if (!isRegisterSuccessful) {
+    if (result.error) {
       ToastService.error(t('RegisterPage.Registration'), t('RegisterPage.Register failed! Please try again'));
       return;
     }
 
     await authClient.login(data[RegisterFormFields.EMAIL], data[RegisterFormFields.PASSWORD]);
     await authClient.verify();
-    await navigate(`/${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.login}`);
+    await navigate(`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.login}`);
     ToastService.success(
       t('RegisterPage.Registration'),
       t('RegisterPage.Register successful! Please check your email for verification'),
@@ -105,7 +105,7 @@ const RegisterPage = () => {
             type='internal'
             iconVisibility={false}
             variant='primary'
-            href={`/${appRoutesConfig.auth}/${appRoutesConfig.authRoutes.login}`}
+            href={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.login}`}
           >
             {t('RegisterPage.Log in')}
           </Hyperlink>

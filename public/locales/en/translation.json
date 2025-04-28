@@ -90,5 +90,15 @@
     "Password": "Password",
     "Don't have an account?": "Don't have an account?",
     "Sign up": "Sign up"
+  },
+  "VerifyEmailPage": {
+    "Click the button below to verify your account": "Click the button below to verify your account",
+    "Verify": "Verify",
+    "Verification": "Verification",
+    "Invalid link": "Invalid link",
+    "Something went wrong. Please try again": "Something went wrong. Please try again",
+    "You have successfully verified your account": "You have successfully verified your account",
+    "You're almost there! Tap the button below to complete your verification": "You're almost there! Tap the button below to complete your verification",
+    "Your verification link will expire on": "Your verification link will expire on"
   }
 }

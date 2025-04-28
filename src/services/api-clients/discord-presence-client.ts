@@ -1,3 +1,4 @@
+import { createLoggingProxy } from '@/functions/create-logging-proxy';
 import { DiscordPresenceData, UserPresence } from '@/types/responses/discord-presence/user-presence';
 import { UserPresenceWebSocket } from '@/types/responses/discord-presence/user-presence-web-socket';
 import axios, { AxiosResponse } from 'axios';
@@ -13,7 +14,9 @@ export class DiscordPresenceClient {
 
   static getInstance(): DiscordPresenceClient {
     if (!this.#instance) {
-      this.#instance = new DiscordPresenceClient();
+      this.#instance = createLoggingProxy(new DiscordPresenceClient(), 'DiscordPresenceClient', [
+        'userPresenceWebSocket',
+      ]);
     }
 
     return this.#instance;

@@ -1,4 +1,10 @@
-export const appRoutesConfig = {
+type AppRouteTitlesConfig<T> = {
+  [Key in keyof T]?: T[Key] extends string ? string : AppRouteTitlesConfig<T[Key]>;
+};
+
+export const APP_ROUTE_TITLE_KEY = 'title';
+
+export const APP_ROUTES_CONFIG = {
   default: '/',
   wildcard: '*',
 
@@ -18,3 +24,16 @@ export const appRoutesConfig = {
     resetPassword: 'reset-password',
   },
 } as const;
+
+export const APP_ROUTE_TITLES_CONFIG: AppRouteTitlesConfig<typeof APP_ROUTES_CONFIG> = {
+  aboutRoutes: {
+    dependencies: 'Dependencies',
+  },
+  authRoutes: {
+    login: 'Login',
+    register: 'Register',
+    verifyEmail: 'Verify email',
+    forgotPassword: 'Forgot password',
+    resetPassword: 'Reset passsword',
+  },
+};
