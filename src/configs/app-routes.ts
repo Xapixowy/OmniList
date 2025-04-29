@@ -23,6 +23,12 @@ export const APP_ROUTES_CONFIG = {
     forgotPassword: 'forgot-password',
     resetPassword: 'reset-password',
   },
+
+  profile: 'profile',
+  list: 'list',
+  listRoutes: {
+    moviesAndTvShows: 'movies-and-tv-shows',
+  },
 } as const;
 
 export const APP_ROUTE_TITLES_CONFIG: AppRouteTitlesConfig<typeof APP_ROUTES_CONFIG> = {

@@ -28,7 +28,6 @@ export const NavigationItem = ({
           </Button>
         ) : (
           <Hyperlink
-            iconVisibility={false}
             className={cn(
               'cursor-pointer hover:no-underline',
               {
@@ -66,7 +65,6 @@ export const MobileNavigationItem = ({
           </Button>
         ) : (
           <Hyperlink
-            iconVisibility={false}
             className={cn(
               'flex cursor-pointer items-center justify-between px-8 py-6 hover:no-underline',
               {

@@ -7,7 +7,10 @@ import { NavigationProvider } from './features/navigation/contexts/navigation';
 import Navigation from './features/navigation/navigation';
 
 const Providers = ({ children }: { children: ReactNode }) => (
-  <NavigationProvider navigationLists={HOME_LAYOUT_CONFIG.navigationLists}>
+  <NavigationProvider
+    navigationLists={HOME_LAYOUT_CONFIG.navigationLists}
+    userMenuItems={HOME_LAYOUT_CONFIG.userMenuItems}
+  >
     <DiscordPresenceProvider userId={HOME_LAYOUT_CONFIG.discord.userId} status={HOME_LAYOUT_CONFIG.discord.status}>
       {children}
     </DiscordPresenceProvider>

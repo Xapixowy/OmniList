@@ -1,7 +1,7 @@
 import { cn } from '@/functions/cn';
 import { ReactElement } from 'react';
-import { useToasterStore } from 'react-hot-toast';
-import { TbAlertTriangle, TbCircleCheck, TbExclamationCircle, TbHelpCircle } from 'react-icons/tb';
+import toast, { useToasterStore } from 'react-hot-toast';
+import { TbAlertTriangle, TbCircleCheck, TbExclamationCircle, TbHelpCircle, TbX } from 'react-icons/tb';
 
 const TOAST_CLASSES: {
   type: {
@@ -33,9 +33,11 @@ const TOAST_PROGRESS_BAR_CLASSES: {
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 export type ToastProps = {
+  id: string;
   title: string;
   message: string;
   type: ToastType;
+  dismissed: boolean;
   duration?: number;
 };
 
@@ -80,17 +82,27 @@ const ToastProgressBar = ({
   );
 };
 
-const Toast = ({ title, message, type, duration }: ToastProps) => {
+const Toast = ({ id, title, message, type, dismissed, duration }: ToastProps) => {
   const icon = getToastIcon(type);
   const { pausedAt } = useToasterStore();
+
+  const dismissHandler = (): void => {
+    toast.dismiss(id);
+  };
 
   return (
     <div
       className={cn(
-        'group relative h-full w-120 overflow-hidden rounded-lg bg-zinc-950 p-4 pb-6 shadow outline transition-colors',
+        'group relative h-full w-96 overflow-hidden rounded-lg bg-zinc-950 p-4 pb-6 shadow outline transition-colors',
         TOAST_CLASSES.type[type],
+        {
+          hidden: dismissed,
+        },
       )}
     >
+      <div className='absolute top-0 right-0 grid cursor-pointer place-items-center p-2' onClick={dismissHandler}>
+        <TbX />
+      </div>
       <p className='mb-1 flex items-center gap-2 font-semibold'>
         <span className='text-lg'>{icon}</span>
         <span>{title}</span>

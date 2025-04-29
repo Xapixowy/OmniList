@@ -4,6 +4,7 @@ import Hyperlink from '@/components/ui/hyperlink';
 import Input from '@/components/ui/input';
 import Label from '@/components/ui/label';
 import { APP_ROUTES_CONFIG } from '@/configs/app-routes';
+import { useAuthenticationContext } from '@/contexts/authentication';
 import { LoginForm, LoginFormFields, LoginFormSchema } from '@/forms/declarations/login';
 import AuthLayout from '@/layouts/auth-layout/auth-layout';
 import { AuthClient } from '@/services/api-clients/auth-client';
@@ -17,6 +18,7 @@ const LoginPage = () => {
   const authClient = AuthClient.getInstance();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { setIsLoggedIn, setUser } = useAuthenticationContext();
   const {
     register,
     handleSubmit,
@@ -33,6 +35,15 @@ const LoginPage = () => {
       return;
     }
 
+    const getUserResult = await authClient.getUser();
+
+    if (getUserResult.error) {
+      ToastService.error(t('LoginPage.Login'), t('LoginPage.Something went wrong. Please try again'));
+      return;
+    }
+
+    setUser(getUserResult.data);
+    setIsLoggedIn(true);
     await navigate(APP_ROUTES_CONFIG.default);
     ToastService.success(t('LoginPage.Login'), t('LoginPage.You have successfully logged in to your account'));
   };
@@ -60,11 +71,7 @@ const LoginPage = () => {
           />
           <FormError message={errors[LoginFormFields.PASSWORD]?.message} />
           <p className='text-right text-sm'>
-            <Hyperlink
-              type='internal'
-              iconVisibility={false}
-              href={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.forgotPassword}`}
-            >
+            <Hyperlink to={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.forgotPassword}`}>
               {t('LoginPage.Forgot password?')}
             </Hyperlink>
           </p>
@@ -76,12 +83,7 @@ const LoginPage = () => {
         </div>
         <p className='text-center text-sm text-zinc-400'>
           <span>{t("LoginPage.Don't have an account?")} </span>
-          <Hyperlink
-            type='internal'
-            iconVisibility={false}
-            variant='primary'
-            href={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.register}`}
-          >
+          <Hyperlink variant='primary' to={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.register}`}>
             {t('LoginPage.Sign up')}
           </Hyperlink>
         </p>

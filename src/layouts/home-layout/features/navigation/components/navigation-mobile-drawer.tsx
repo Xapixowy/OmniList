@@ -1,11 +1,15 @@
 import SocialMediaLink from '@/components/ui/social-media-link';
+import { useAuthenticationContext } from '@/contexts/authentication';
 import DiscordPresenceLink from '@/features/discord-presence-link';
 import { HOME_LAYOUT_CONFIG } from '@/layouts/home-layout/configs/home-layout';
+import { useNavigationLists } from '@/layouts/home-layout/features/navigation/hooks/use-navigation-lists';
 import { useNavigationContext } from '../contexts/navigation';
 import { MobileNavigationList } from './navigation-list';
 
 const NavigationMobileDrawer = () => {
-  const { navigationLists, navigationMobileDrawerVisibility } = useNavigationContext();
+  const { isLoggedIn } = useAuthenticationContext();
+  const { navigationMobileDrawerVisibility } = useNavigationContext();
+  const navigationLists = useNavigationLists(isLoggedIn);
 
   return (
     <nav

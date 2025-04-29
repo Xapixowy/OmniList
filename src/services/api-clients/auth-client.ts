@@ -47,4 +47,8 @@ export class AuthClient {
   async login(email: string, password: string): Promise<Result<Models.Session, AppwriteException>> {
     return await tryCatch<Models.Session, AppwriteException>(this.account.createEmailPasswordSession(email, password));
   }
+
+  async logout(): Promise<Result<object, AppwriteException>> {
+    return await tryCatch<object, AppwriteException>(this.account.deleteSession('current'));
+  }
 }

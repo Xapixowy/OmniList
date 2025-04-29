@@ -102,10 +102,9 @@ const RegisterPage = () => {
         <p className='text-center text-sm text-zinc-400'>
           <span>{t('RegisterPage.Already have an account?')} </span>
           <Hyperlink
-            type='internal'
-            iconVisibility={false}
+            icon={false}
             variant='primary'
-            href={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.login}`}
+            to={`/${APP_ROUTES_CONFIG.auth}/${APP_ROUTES_CONFIG.authRoutes.login}`}
           >
             {t('RegisterPage.Log in')}
           </Hyperlink>

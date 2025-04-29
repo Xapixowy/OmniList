@@ -8,8 +8,7 @@ type ProtectedRouteProps = {
 const ProtectedRoute = ({ to }: ProtectedRouteProps) => {
   const { isLoggedIn } = useAuthenticationContext();
 
-  // TODO: change to isLoggedIn
-  if (true) {
+  if (!isLoggedIn) {
     return <Outlet />;
   }
 

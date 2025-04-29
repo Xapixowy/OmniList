@@ -28,7 +28,7 @@ const SocialMediaLink = (props: SocialMediaLinkProps) => {
     >
       <props.icon />
 
-      <span className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(120%)] rounded-sm bg-zinc-700/30 px-2 py-1 text-xs font-extralight whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100'>
+      <span className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(120%)] rounded-md bg-zinc-700/30 px-2 py-1 text-xs font-extralight whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100'>
         {props.name}
       </span>
     </a>

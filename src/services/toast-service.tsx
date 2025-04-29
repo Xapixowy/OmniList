@@ -5,10 +5,14 @@ export class ToastService {
   static options: ToastOptions = {
     position: 'top-right',
     duration: 4000,
+    removeDelay: 0,
   };
 
   public static success(title: string, message: string, options?: ToastOptions): void {
-    this.toast(title, message, 'success', options);
+    this.toast(title, message, 'success', {
+      duration: 2000,
+      ...options,
+    });
   }
 
   public static error(title: string, message: string, options?: ToastOptions): void {
@@ -27,7 +31,9 @@ export class ToastService {
     const toastOptions = { ...this.options, ...options };
 
     return toast.custom(
-      <Toast title={title} message={message} type={type} duration={toastOptions.duration} />,
+      ({ id, duration, dismissed }) => (
+        <Toast id={id} title={title} message={message} type={type} dismissed={dismissed} duration={duration} />
+      ),
       toastOptions,
     );
   }

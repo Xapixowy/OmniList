@@ -71,9 +71,7 @@ const VerifyEmailPage = () => {
         <p>{t("VerifyEmailPage.You're almost there! Tap the button below to complete your verification")}</p>
         <p className='text-zinc-50'>
           {t('VerifyEmailPage.Your verification link will expire on')}:{' '}
-          <Hyperlink iconVisibility={false} variant='primary'>
-            {expireDate}
-          </Hyperlink>
+          <Hyperlink variant='primary'>{expireDate}</Hyperlink>
         </p>
         <div className='flex justify-center'>
           <Button variant='primary' loading={isSubmitting} onClick={submitHandler}>

@@ -22,16 +22,12 @@ export const NavigationSection = ({ id, title, items }: NavigationSectionType) =
 
   return (
     <div className='relative' {...dynamicAttributes}>
-      <Hyperlink
-        iconVisibility={false}
-        className='flex items-center gap-1 hover:no-underline'
-        onClick={collapseItemHandler}
-      >
+      <Hyperlink className='flex items-center gap-1 hover:no-underline' onClick={collapseItemHandler}>
         {title} <TbChevronDown className={`${isThisItemCollapsed ? 'rotate-180' : ''} transition-transform`} />
       </Hyperlink>
       <div
         className={cn(
-          'absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-[calc(120%)] place-items-center rounded-sm bg-zinc-950/80 px-4 py-2 whitespace-nowrap',
+          'absolute bottom-0 left-1/2 flex -translate-x-1/2 translate-y-[calc(120%)] place-items-center rounded-md bg-zinc-950/80 px-4 py-2 whitespace-nowrap',
           {
             block: isThisItemCollapsed,
             hidden: !isThisItemCollapsed,
@@ -63,7 +59,6 @@ export const MobileNavigationSection = ({ id, title, items }: NavigationSectionT
   return (
     <div className='relative' {...dynamicAttributes}>
       <Hyperlink
-        iconVisibility={false}
         className='flex items-center justify-between px-8 py-6 hover:no-underline'
         onClick={collapseItemHandler}
       >

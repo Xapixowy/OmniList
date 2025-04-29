@@ -18,9 +18,14 @@
     "About": "About",
     "Dependencies": "Dependencies",
     "Authentication": "Authentication",
+    "Profile": "Profile",
+    "Lists": "Lists",
+    "Movies & TV Shows": "Movies & TV Shows",
     "Login": "Login",
     "Sign Up": "Sign Up",
-    "All rights reserved.": "All rights reserved."
+    "Logout": "Logout",
+    "All rights reserved.": "All rights reserved.",
+    "Something went wrong. Please try again": "Something went wrong. Please try again"
   },
   "LandingPage": {
     "Track Your Entertainment Journey": "Track Your Entertainment Journey",

@@ -1,18 +1,16 @@
 import { cn } from '@/functions/cn';
 import { AnchorHTMLAttributes, ReactNode } from 'react';
 import { TbExternalLink } from 'react-icons/tb';
-import { Link } from 'react-router';
+import { Link, To } from 'react-router';
 
 const HYPERLINK_DEFAULTS: {
   type: HyperlinkType;
   variant: HyperlinkVariant;
   target: string;
-  iconVisibility: boolean;
 } = {
   type: 'external',
   variant: 'default',
   target: '_blank',
-  iconVisibility: true,
 };
 const HYPERLINK_CLASSES: {
   default: string;
@@ -30,20 +28,21 @@ const HYPERLINK_CLASSES: {
 type HyperlinkType = 'internal' | 'external';
 export type HyperlinkVariant = 'default' | 'primary' | 'secondary' | 'accent';
 export type HyperlinkProps = {
-  variant?: HyperlinkVariant;
-  iconVisibility?: boolean;
+  to?: To;
   href?: string;
-  target?: string;
+  icon?: boolean;
   className?: string;
+  variant?: HyperlinkVariant;
+  target?: string;
   children?: ReactNode;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const Hyperlink = ({
+  to,
   href,
-  type = HYPERLINK_DEFAULTS.type,
-  iconVisibility = HYPERLINK_DEFAULTS.iconVisibility,
-  variant = HYPERLINK_DEFAULTS.variant,
+  icon,
   className = '',
+  variant = HYPERLINK_DEFAULTS.variant,
   target = HYPERLINK_DEFAULTS.target,
   children,
   ...props
@@ -52,30 +51,32 @@ const Hyperlink = ({
     HYPERLINK_CLASSES.default,
     variant !== 'default' ? HYPERLINK_CLASSES.variants[variant] : '',
     {
-      'cursor-auto': !href && !props.onClick,
+      'cursor-auto': !to && !href && !props.onClick,
     },
     className,
   );
 
-  if (!href) {
+  if (href) {
     return (
-      <span className={classes} {...props}>
+      <a className={classes} href={href} target={target} {...props}>
         {children}
-        {iconVisibility && <TbExternalLink />}
-      </span>
+        {(icon ?? true) && <TbExternalLink />}
+      </a>
     );
   }
 
-  return type === 'external' ? (
-    <a className={classes} href={href} target={target} {...props}>
+  if (to) {
+    <Link className={classes} to={to} {...props}>
       {children}
-      {iconVisibility && <TbExternalLink />}
-    </a>
-  ) : (
-    <Link className={classes} to={href} {...props}>
+      {(icon ?? false) && <TbExternalLink />}
+    </Link>;
+  }
+
+  return (
+    <span className={classes} {...props}>
       {children}
-      {iconVisibility && <TbExternalLink />}
-    </Link>
+      {(icon ?? false) && <TbExternalLink />}
+    </span>
   );
 };
 export default Hyperlink;
